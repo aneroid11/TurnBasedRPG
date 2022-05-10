@@ -3,17 +3,16 @@
 
 #include <SFML/Graphics.hpp>
 
-void errorAndExit(std::string errMsg)
-{
-    std::cerr << errMsg << "\n";
-    exit(-1);
-}
+#include "gamescroll.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(750, 1000), "Resolution res");
-    sf::CircleShape shape(100.0f);
-    shape.setFillColor(sf::Color::Green);
+    GameScroll* scroll = GameScroll::getInstance();
+    scroll->display("text");
+
+    sf::sleep(sf::milliseconds(1000));
+    //GameScroll::getInstance()->display("this is going to be displayed by GameScroll");
+    /*sf::RenderWindow window(sf::VideoMode(750, 1000), "Resolution res");
 
     sf::Texture bgTexture;
     if (!bgTexture.loadFromFile("resources/images/bg_texture.png"))
@@ -55,7 +54,7 @@ int main()
         window.draw(bgSprite);
         window.draw(text);
         window.display();
-    }
+    }*/
 
     return 0;
 }
