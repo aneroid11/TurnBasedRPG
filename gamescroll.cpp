@@ -20,6 +20,11 @@ GameScroll::~GameScroll()
     {
         delete this->window;
     }
+
+    for (sf::Drawable* d : objectsToDraw)
+    {
+        delete d;
+    }
 }
 
 GameScroll* GameScroll::getInstance()
@@ -62,6 +67,12 @@ void GameScroll::gameLoop()
 
         this->window->clear();
         this->window->draw(bgSprite);
+
+        for (sf::Drawable* obj : objectsToDraw)
+        {
+            this->window->draw(*obj);
+        }
+
         this->window->display();
     }
 }

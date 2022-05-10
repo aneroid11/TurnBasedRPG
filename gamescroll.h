@@ -5,6 +5,7 @@
 #include <iostream>
 #include <thread>
 #include <functional>
+#include <list>
 
 #include <SFML/Graphics.hpp>
 
@@ -19,14 +20,15 @@ public:
 
 private:
     GameScroll();
-    ~GameScroll();
     GameScroll(const GameScroll& gs) = delete;
+    ~GameScroll();
+
     GameScroll operator =(const GameScroll& gs) = delete;
 
     static GameScroll* instance;
 
     sf::RenderWindow* window = nullptr;
-
+    std::list<sf::Drawable *> objectsToDraw;
     std::thread* gameLoopThread;
 };
 
