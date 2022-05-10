@@ -10,7 +10,6 @@ int main()
     GameScroll* scroll = GameScroll::getInstance();
     scroll->display("text");
 
-    sf::sleep(sf::milliseconds(1000));
     //GameScroll::getInstance()->display("this is going to be displayed by GameScroll");
     /*sf::RenderWindow window(sf::VideoMode(750, 1000), "Resolution res");
 

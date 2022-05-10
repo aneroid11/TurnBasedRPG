@@ -16,9 +16,9 @@ public:
     static void deleteInstance();
 
     void display(std::string text);
-    void gameLoop();
 
 private:
+
     GameScroll();
     GameScroll(const GameScroll& gs) = delete;
     ~GameScroll();
@@ -27,9 +27,14 @@ private:
 
     static GameScroll* instance;
 
+    void handleMousePressedEvent(const sf::Event& event);
+    void gameLoop();
+
     sf::RenderWindow* window = nullptr;
     std::list<sf::Drawable *> objectsToDraw;
     std::thread* gameLoopThread;
+
+    bool gotUserInput = true;
 };
 
 #endif // GAMESCROLL_H

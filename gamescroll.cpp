@@ -43,6 +43,14 @@ void GameScroll::deleteInstance()
     }
 }
 
+void GameScroll::handleMousePressedEvent(const sf::Event& event)
+{
+    if (event.mouseButton.button == sf::Mouse::Left)
+    {
+        gotUserInput = true;
+    }
+}
+
 void GameScroll::gameLoop()
 {
     sf::Texture bgTexture;
@@ -63,6 +71,10 @@ void GameScroll::gameLoop()
                 this->window->close();
                 return;
             }
+            else if (event.type == sf::Event::MouseButtonPressed)
+            {
+                handleMousePressedEvent(event);
+            }
         }
 
         this->window->clear();
@@ -79,5 +91,11 @@ void GameScroll::gameLoop()
 
 void GameScroll::display(std::string text)
 {
+    this->gotUserInput = false;
     std::cout << text << "\n";
+
+    while (!this->gotUserInput)
+    {
+        sf::sleep(sf::milliseconds(30));
+    }
 }
