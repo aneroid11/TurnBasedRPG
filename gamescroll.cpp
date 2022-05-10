@@ -8,7 +8,7 @@ GameScroll::GameScroll()
     this->window = new sf::RenderWindow(sf::VideoMode(750, 1000), "Resolution res");
 
     this->textFont = new sf::Font();
-    if (!this->textFont->loadFromFile("resources/fonts/arial.ttf"))
+    if (!this->textFont->loadFromFile("resources/fonts/Ubuntu-B.ttf"))
     {
         errorAndExit("Cannot load font");
     }
@@ -99,7 +99,7 @@ void GameScroll::gameLoop()
     }
 }
 
-void GameScroll::display(std::string text)
+void GameScroll::display(std::wstring text)
 {
     this->mutex.lock();
 

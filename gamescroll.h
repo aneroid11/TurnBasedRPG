@@ -16,7 +16,7 @@ public:
     static GameScroll* getInstance();
     static void deleteInstance();
 
-    void display(std::string text);
+    void display(std::wstring text);
 
 private:
 

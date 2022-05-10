@@ -8,14 +8,15 @@
 int main()
 {
     GameScroll* scroll = GameScroll::getInstance();
-    scroll->display("Ya prosnulsya v gorode");
-    scroll->display("Eto ne bylo legko...");
-    scroll->display("Ya ne hotel prosipatsya");
-    scroll->display("Ya ne hotel prosipatsya");
-    scroll->display("Ya ne hotel prosipatsya");
-    scroll->display("Ya ne hotel prosipatsya");
-    scroll->display("Ya ne hotel prosipatsya");
-    scroll->display("Ya ne hotel prosipatsya");
+    scroll->display(L"Я проснулся");
+    scroll->display(L"Это не было легко...");
+    scroll->display(L"Это было очень тяжело");
+    scroll->display(L"Это было очень тяжело");
+    scroll->display(L"Это было очень тяжело");
+    scroll->display(L"Это было очень тяжело");
+    scroll->display(L"Это было очень тяжело");
+    scroll->display(L"Это было очень тяжело");
+    scroll->display(L"Крайне тяжело");
 
     //GameScroll::getInstance()->display("this is going to be displayed by GameScroll");
     /*sf::RenderWindow window(sf::VideoMode(750, 1000), "Resolution res");
