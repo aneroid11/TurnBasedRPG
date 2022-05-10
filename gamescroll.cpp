@@ -7,6 +7,12 @@ GameScroll::GameScroll()
 {
     this->window = new sf::RenderWindow(sf::VideoMode(750, 1000), "Resolution res");
 
+    this->textFont = new sf::Font();
+    if (!this->textFont->loadFromFile("resources/fonts/arial.ttf"))
+    {
+        errorAndExit("Cannot load font");
+    }
+
     auto func = std::bind(&GameScroll::gameLoop, this);
     this->gameLoopThread = new std::thread(func);
 }
@@ -25,6 +31,8 @@ GameScroll::~GameScroll()
     {
         delete d;
     }
+
+    delete this->textFont;
 }
 
 GameScroll* GameScroll::getInstance()
@@ -47,7 +55,7 @@ void GameScroll::handleMousePressedEvent(const sf::Event& event)
 {
     if (event.mouseButton.button == sf::Mouse::Left)
     {
-        gotUserInput = true;
+        this->transferControlToCaller = true;
     }
 }
 
@@ -80,10 +88,12 @@ void GameScroll::gameLoop()
         this->window->clear();
         this->window->draw(bgSprite);
 
+        mutex.lock();
         for (sf::Drawable* obj : objectsToDraw)
         {
             this->window->draw(*obj);
         }
+        mutex.unlock();
 
         this->window->display();
     }
@@ -91,10 +101,22 @@ void GameScroll::gameLoop()
 
 void GameScroll::display(std::string text)
 {
-    this->gotUserInput = false;
-    std::cout << text << "\n";
+    this->mutex.lock();
 
-    while (!this->gotUserInput)
+    this->transferControlToCaller = false;
+
+    sf::Text* drawableText = new sf::Text(text.c_str(), *(this->textFont));
+
+    drawableText->setOutlineColor(sf::Color(200, 200, 200));
+    drawableText->setOutlineThickness(1.0f);
+    drawableText->setPosition(this->textCursorPos);
+    this->objectsToDraw.push_back(drawableText);
+
+    this->textCursorPos += sf::Vector2f(0.0f, drawableText->getGlobalBounds().height);
+
+    this->mutex.unlock();
+
+    while (!this->transferControlToCaller)
     {
         sf::sleep(sf::milliseconds(30));
     }

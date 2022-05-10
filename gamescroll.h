@@ -5,6 +5,7 @@
 #include <iostream>
 #include <thread>
 #include <functional>
+#include <mutex>
 #include <list>
 
 #include <SFML/Graphics.hpp>
@@ -33,8 +34,11 @@ private:
     sf::RenderWindow* window = nullptr;
     std::list<sf::Drawable *> objectsToDraw;
     std::thread* gameLoopThread;
+    std::mutex mutex;
 
-    bool gotUserInput = true;
+    sf::Font* textFont;
+    bool transferControlToCaller = true;
+    sf::Vector2f textCursorPos = sf::Vector2f(10.0f, 0.0f);
 };
 
 #endif // GAMESCROLL_H
