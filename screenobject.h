@@ -8,7 +8,7 @@ class ScreenObject : public sf::Drawable
 public:
     virtual ~ScreenObject() {}
 
-    virtual void update() = 0;
+    virtual void update(sf::Event& e, sf::RenderWindow& window) = 0;
 };
 
 #endif // SCREENOBJECT_H

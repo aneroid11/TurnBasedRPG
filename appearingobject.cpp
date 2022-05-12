@@ -6,8 +6,11 @@ AppearingObject::AppearingObject(float secondsToAppear)
     this->fromCreation.restart();
 }
 
-void AppearingObject::update()
+void AppearingObject::update(sf::Event& ev, sf::RenderWindow& window)
 {
+    (void)ev;
+    (void)window;
+
     float alphaCoef = this->fromCreation.getElapsedTime().asSeconds() / this->secondsToAppear;
     unsigned currentAlpha = 255 * alphaCoef;
 
