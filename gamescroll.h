@@ -36,6 +36,8 @@ private:
     std::mutex mutex;
 
     sf::Font* textFont;
+    sf::Texture* bgTexture;
+    sf::Sprite* bgSprite;
     bool transferControlToCaller = true;
     sf::Vector2f textCursorPos = sf::Vector2f(10.0f, 0.0f);
 };

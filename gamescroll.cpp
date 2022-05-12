@@ -13,26 +13,29 @@ GameScroll::GameScroll()
         errorAndExit("Cannot load font");
     }
 
-    auto func = std::bind(&GameScroll::gameLoop, this);
-    this->gameLoopThread = new std::thread(func);
+    this->bgTexture = new sf::Texture();
+    if (!this->bgTexture->loadFromFile("resources/images/bg_texture.png"))
+    {
+        errorAndExit("Cannot load texture");
+    }
+
+    this->bgSprite = new sf::Sprite(*this->bgTexture);
 }
 
 GameScroll::~GameScroll()
 {
-    this->gameLoopThread->join();
-    delete this->gameLoopThread;
-
     if (this->window)
     {
         delete this->window;
     }
-
     for (sf::Drawable* d : objectsToDraw)
     {
         delete d;
     }
 
     delete this->textFont;
+    delete this->bgTexture;
+    delete this->bgSprite;
 }
 
 GameScroll* GameScroll::getInstance()
@@ -51,26 +54,8 @@ void GameScroll::deleteInstance()
     }
 }
 
-void GameScroll::handleMousePressedEvent(const sf::Event& event)
-{    
-    this->mutex.lock();
-    if (event.mouseButton.button == sf::Mouse::Left)
-    {
-        this->transferControlToCaller = true;
-    }
-    this->mutex.unlock();
-}
-
 void GameScroll::gameLoop()
 {
-    sf::Texture bgTexture;
-    if (!bgTexture.loadFromFile("resources/images/bg_texture.png"))
-    {
-        errorAndExit("Cannot load texture");
-    }
-
-    sf::Sprite bgSprite(bgTexture);
-
     while (this->window->isOpen())
     {
         sf::Event event;
