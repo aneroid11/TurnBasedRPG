@@ -19,6 +19,8 @@ public:
 private:
     sf::Text text;
     sf::ConvexShape background;
+
+    bool clicked;
 };
 
 #endif // APPEARINGBUTTON_H

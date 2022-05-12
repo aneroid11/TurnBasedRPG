@@ -72,26 +72,25 @@ void GameScroll::drawScrollUntilUserInput()
             if (event.type == sf::Event::Closed)
             {
                 this->window->close();
-                //return;
                 exit(0);
             }
             else if (event.type == sf::Event::MouseButtonPressed)
             {
-                //handleMousePressedEvent(event);
-                if (event.mouseButton.button == sf::Mouse::Left)
+                /*if (event.mouseButton.button == sf::Mouse::Left)
                 {
-                    return;
-                }
+                    //return;
+                }*/
             }
         }
-
-        this->window->clear();
-        this->window->draw(*this->bgSprite);
 
         for (ScreenObject* obj : objectsToDraw)
         {
             obj->update(event, *this->window);
         }
+
+        this->window->clear();
+        this->window->draw(*this->bgSprite);
+
         for (ScreenObject* obj : objectsToDraw)
         {
             this->window->draw(*obj);

@@ -1,5 +1,7 @@
 #include "appearingbutton.h"
 
+#include <iostream>
+
 AppearingButton::AppearingButton(std::wstring str, sf::Font& font, sf::Vector2f position)
     : AppearingObject(0.2f), text(str, font)
 {
@@ -20,6 +22,8 @@ AppearingButton::AppearingButton(std::wstring str, sf::Font& font, sf::Vector2f 
     this->text.setFillColor(sf::Color(200, 200, 200));
     this->text.setOutlineThickness(1.0f);
     this->text.setOutlineColor(sf::Color(200, 200, 200));
+
+    this->clicked = false;
 }
 
 AppearingButton::~AppearingButton()
@@ -32,9 +36,28 @@ void AppearingButton::draw(sf::RenderTarget &target, sf::RenderStates states) co
     target.draw(this->text, states);
 }
 
-void AppearingButton::update(sf::Event& e, sf::RenderWindow& window)
+void AppearingButton::update(sf::Event& event, sf::RenderWindow& window)
 {
-    AppearingObject::update(e, window);
+    AppearingObject::update(event, window);
+
+    if (event.type == sf::Event::MouseButtonPressed && !this->clicked)
+    {
+        this->clicked = true;
+
+        if (event.mouseButton.button == sf::Mouse::Left)
+        {
+            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+
+            if (this->background.getGlobalBounds().contains(sf::Vector2f(mousePos.x, mousePos.y)))
+            {
+                std::cout << "clicked on a button\n";
+            }
+        }
+    }
+    else if (event.type == sf::Event::MouseButtonReleased)
+    {
+        this->clicked = false;
+    }
 }
 
 void AppearingButton::setAlpha(unsigned alpha)
