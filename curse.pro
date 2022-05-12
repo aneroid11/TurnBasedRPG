@@ -13,4 +13,5 @@ SOURCES += \
 
 HEADERS += \
     errorandexit.h \
-    gamescroll.h
+    gamescroll.h \
+    screenobject.h
