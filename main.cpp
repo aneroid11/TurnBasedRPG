@@ -11,7 +11,7 @@ int main()
 
     for (int i = 0; i < 100; i++)
     {
-        std::wstring text = std::wstring(L"Текст ") + std::to_wstring(i);
+        std::wstring text = std::wstring(L"Текст\nТекст текст фщалыфщвлщфыщвлЧ\nТектфывл") + std::to_wstring(i);
         scroll->display(text);
     }
 
