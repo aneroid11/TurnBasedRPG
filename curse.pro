@@ -7,6 +7,7 @@ LIBS += -lpthread
 LIBS += -lsfml-system -lsfml-graphics -lsfml-window
 
 SOURCES += \
+        appearingbutton.cpp \
         appearingobject.cpp \
         appearingtext.cpp \
         errorandexit.cpp \
@@ -14,6 +15,7 @@ SOURCES += \
         main.cpp
 
 HEADERS += \
+    appearingbutton.h \
     appearingobject.h \
     appearingtext.h \
     errorandexit.h \
