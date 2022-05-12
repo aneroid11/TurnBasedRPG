@@ -53,9 +53,9 @@ AppearingButton::AppearingButton(std::wstring s, sf::Font& font, sf::Vector2f po
         m_textNormal = sf::Color(255,255,255);
         m_textHover = sf::Color(255,255,255);
         m_textClicked = sf::Color(255,255,255);
-        m_bgNormal = sf::Color(0,255,255,100);
-        m_bgHover = sf::Color(0,200,200,100);
-        m_bgClicked = sf::Color(0,150,150);
+        m_bgNormal = sf::Color(100,100,100,100);
+        m_bgHover = sf::Color(80,80,80,80);
+        m_bgClicked = sf::Color(120,120,120);
         m_border = sf::Color(255,255,255,100);
     }
         break;
@@ -150,9 +150,9 @@ void AppearingButton::setStyle(sf::Uint32 style)
         m_textNormal = sf::Color(255,255,255);
         m_textHover = sf::Color(255,255,255);
         m_textClicked = sf::Color(255,255,255);
-        m_bgNormal = sf::Color(0,255,255,100);
-        m_bgHover = sf::Color(0,200,200,100);
-        m_bgClicked = sf::Color(0,150,150);
+        m_bgNormal = sf::Color(100,100,100,100);
+        m_bgHover = sf::Color(80,80,80,80);
+        m_bgClicked = sf::Color(120,120,120);
         m_border = sf::Color(255,255,255,100);
     }
         break;
@@ -344,42 +344,8 @@ void AppearingButton::setAlpha(unsigned alpha)
 
 void AppearingButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    switch(m_style)
-    {
-    case style::none:
-    {
-        target.draw(m_button, states);
-        target.draw(m_shadow, states);
-        target.draw(m_text, states);
-    }
-        break;
-
-    case style::save:
-    {
-        target.draw(m_button, states);
-        target.draw(m_shadow, states);
-        target.draw(m_text, states);
-    }
-        break;
-
-    case style::cancel:
-    {
-        target.draw(m_button, states);
-        target.draw(m_shadow, states);
-        target.draw(m_text, states);
-    }
-        break;
-
-    case style::clean:
-    {
-        target.draw(m_button, states);
-        target.draw(m_shadow, states);
-        target.draw(m_text, states);
-    }
-        break;
-
-    default:
-        break;
-    }
+    target.draw(m_button, states);
+    target.draw(m_shadow, states);
+    target.draw(m_text, states);
 }
 
