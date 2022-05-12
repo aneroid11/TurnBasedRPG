@@ -93,7 +93,7 @@ void GameScroll::drawScrollUntilUserInput()
         }
         for (ScreenObject* obj : objectsToDraw)
         {
-            obj->draw(this->window);
+            this->window->draw(*obj);
         }
 
         this->window->display();

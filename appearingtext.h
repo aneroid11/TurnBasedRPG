@@ -17,7 +17,7 @@ public:
     AppearingText(const TextParameters& params);
     ~AppearingText() override {}
 
-    void draw(sf::RenderWindow* window) override;
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     void setAlpha(unsigned alpha) override;
 
     sf::Text getText() const { return this->text; }

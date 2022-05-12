@@ -1,10 +1,10 @@
 #include "appearingtext.h"
 
 AppearingText::AppearingText(const TextParameters& params)
-    : text(params.string, params.font, params.characterSize), AppearingObject(0.2f)
+    : AppearingObject(0.2f), text(params.string, params.font, params.characterSize)
 {
     //this->text.setOutlineColor(sf::Color(250, 250, 10, 0));
-    this->text.setOutlineColor(sf::Color(150, 150, 150, 0));
+    this->text.setOutlineColor(sf::Color(200, 200, 200, 0));
     this->text.setOutlineThickness(1.0f);
     this->text.setPosition(params.position);
 
@@ -14,9 +14,9 @@ AppearingText::AppearingText(const TextParameters& params)
                                       0));
 }
 
-void AppearingText::draw(sf::RenderWindow* window)
+void AppearingText::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    window->draw(this->text);
+    target.draw(this->text, states);
 }
 
 void AppearingText::setAlpha(unsigned alpha)

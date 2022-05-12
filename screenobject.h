@@ -3,13 +3,12 @@
 
 #include <SFML/Graphics.hpp>
 
-class ScreenObject
+class ScreenObject : public sf::Drawable
 {
 public:
     virtual ~ScreenObject() {}
 
     virtual void update() = 0;
-    virtual void draw(sf::RenderWindow* window) = 0;
 };
 
 #endif // SCREENOBJECT_H
