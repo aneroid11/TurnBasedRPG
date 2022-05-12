@@ -26,7 +26,6 @@ private:
     sf::Text text;
     sf::Clock clockSinceCreated;
 
-    int currentAlpha;
     float secondsToAppear;
 };
 
