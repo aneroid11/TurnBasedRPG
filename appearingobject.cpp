@@ -1,4 +1,5 @@
 #include "appearingobject.h"
+#include <iostream>
 
 AppearingObject::AppearingObject(float secondsToAppear)
 {
