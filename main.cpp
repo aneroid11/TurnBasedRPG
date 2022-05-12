@@ -8,13 +8,11 @@
 int main()
 {
     GameScroll* scroll = GameScroll::getInstance();
-    scroll->display(L"Хэллоу ворлд");
-    scroll->display(L"Хэллоу ворлд");
-    scroll->display(L"Хэллоу ворлд");
-    scroll->display(L"аыфвофщывлщлвфщ");
-    scroll->display(L"Хэллоу ворлд");
-    scroll->display(L"Хэллоу ворлд");
-    scroll->display(L"Ывыщаылщлащвылащыл");
+
+    scroll->display(L"Банальные, но неопровержимые выводы, а также базовые сценарии поведения ");
+    scroll->display(L"пользователей являются только методом политического участия и описаны ");
+    scroll->display(L"максимально подробно. С другой стороны, социально-экономическое развитие ");
+    scroll->display(L"предоставляет широкие возможности для распределения внутренних резервов и ресурсов!");
 
     //GameScroll::getInstance()->display("this is going to be displayed by GameScroll");
     /*sf::RenderWindow window(sf::VideoMode(750, 1000), "Resolution res");

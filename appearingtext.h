@@ -24,6 +24,10 @@ public:
 
 private:
     sf::Text text;
+    sf::Clock clockSinceCreated;
+
+    int currentAlpha;
+    float secondsToAppear;
 };
 
 #endif // APPEARINGTEXT_H
