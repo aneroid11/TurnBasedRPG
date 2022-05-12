@@ -119,7 +119,9 @@ void GameScroll::display(std::wstring text)
     }
 
     this->objectsToDraw.push_back(drawableText);
-    this->textCursorPos += sf::Vector2f(0.0f, textHeight);
+    float lineSpacing = this->textFont->getLineSpacing(params.characterSize) - params.characterSize;
+
+    this->textCursorPos += sf::Vector2f(0.0f, textHeight + lineSpacing);
 
     this->drawScrollUntilUserInput();
 }
