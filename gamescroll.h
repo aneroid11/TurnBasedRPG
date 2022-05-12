@@ -28,7 +28,7 @@ private:
     static GameScroll* instance;
 
     void handleMousePressedEvent(const sf::Event& event);
-    void gameLoop();
+    void drawScrollUntilUserInput();
 
     sf::RenderWindow* window = nullptr;
     std::list<sf::Drawable *> objectsToDraw;

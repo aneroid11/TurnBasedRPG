@@ -28,7 +28,7 @@ GameScroll::~GameScroll()
     {
         delete this->window;
     }
-    for (sf::Drawable* d : objectsToDraw)
+    for (sf::Drawable* d : this->objectsToDraw)
     {
         delete d;
     }
@@ -54,7 +54,7 @@ void GameScroll::deleteInstance()
     }
 }
 
-void GameScroll::gameLoop()
+void GameScroll::drawScrollUntilUserInput()
 {
     while (this->window->isOpen())
     {
@@ -93,17 +93,18 @@ void GameScroll::display(std::wstring text)
 {
     sf::Text* drawableText = new sf::Text(text.c_str(), *(this->textFont));
 
-    drawableText->setOutlineColor(sf::Color(200, 200, 200, 100));
+    unsigned int alpha = 200;
+    drawableText->setOutlineColor(sf::Color(200, 200, 200, alpha));
     drawableText->setOutlineThickness(1.0f);
     drawableText->setPosition(this->textCursorPos);
     //drawableText->setColor(sf::Color(0, 0, 0, 0));
     drawableText->setFillColor(sf::Color(drawableText->getFillColor().r,
                                          drawableText->getFillColor().g,
                                          drawableText->getFillColor().b,
-                                         100));
+                                         alpha));
     this->objectsToDraw.push_back(drawableText);
 
     this->textCursorPos += sf::Vector2f(0.0f, drawableText->getGlobalBounds().height);
 
-    this->gameLoop();
+    this->drawScrollUntilUserInput();
 }
