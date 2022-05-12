@@ -66,7 +66,7 @@ void GameScroll::drawScrollUntilUserInput()
     while (this->window->isOpen())
     {
         sf::Event event;
-        while (this->window->pollEvent(event))
+        if (this->window->pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
             {
