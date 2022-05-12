@@ -3,11 +3,18 @@
 AppearingButton::AppearingButton(std::wstring str, sf::Font& font, sf::Vector2f position)
     : AppearingObject(0.2f), text(str, font)
 {
-    sf::Vector2f size = sf::Vector2f(text.getGlobalBounds().width, text.getGlobalBounds().height);
-    this->background = thor::Shapes::roundedRect(size, 3.0f, sf::Color(100, 100, 100),
+    sf::Vector2f textSize = sf::Vector2f(text.getGlobalBounds().width, text.getGlobalBounds().height);
+    float bgScaleCoef = 1.5f;
+    sf::Vector2f bgSize = sf::Vector2f(textSize.x * bgScaleCoef, textSize.y * bgScaleCoef);
+    this->background = thor::Shapes::roundedRect(bgSize, 3.0f, sf::Color(100, 100, 100),
                                                  1.0f, sf::Color(100, 100, 100));
 
+    this->background.setOrigin(this->background.getGlobalBounds().width / 2,
+                               0);
     this->background.setPosition(position);
+
+    this->text.setOrigin(this->text.getGlobalBounds().width/2,
+                         0);
     this->text.setPosition(position);
 
     this->text.setFillColor(sf::Color(200, 200, 200));

@@ -124,7 +124,8 @@ void GameScroll::display(std::wstring text)
 
     this->textCursorPos += sf::Vector2f(0.0f, textHeight);
 
-    AppearingButton* button = new AppearingButton(L"ДжоДжоДжоДжо", *this->textFont, this->textCursorPos);
+    AppearingButton* button = new AppearingButton(L"ДжоДжоДжоДжо", *this->textFont,
+                                                  sf::Vector2f(this->textCursorPos.x + 300, this->textCursorPos.y));
     this->objectsToDraw.push_back(button);
 
     this->drawScrollUntilUserInput();
