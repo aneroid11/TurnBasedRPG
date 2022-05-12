@@ -32,8 +32,6 @@ private:
 
     sf::RenderWindow* window = nullptr;
     std::list<sf::Drawable *> objectsToDraw;
-    std::thread* gameLoopThread;
-    std::mutex mutex;
 
     sf::Font* textFont;
     sf::Texture* bgTexture;
