@@ -52,11 +52,13 @@ void GameScroll::deleteInstance()
 }
 
 void GameScroll::handleMousePressedEvent(const sf::Event& event)
-{
+{    
+    this->mutex.lock();
     if (event.mouseButton.button == sf::Mouse::Left)
     {
         this->transferControlToCaller = true;
     }
+    this->mutex.unlock();
 }
 
 void GameScroll::gameLoop()
@@ -88,12 +90,12 @@ void GameScroll::gameLoop()
         this->window->clear();
         this->window->draw(bgSprite);
 
-        mutex.lock();
+        this->mutex.lock();
         for (sf::Drawable* obj : objectsToDraw)
         {
             this->window->draw(*obj);
         }
-        mutex.unlock();
+        this->mutex.unlock();
 
         this->window->display();
     }
@@ -107,9 +109,14 @@ void GameScroll::display(std::wstring text)
 
     sf::Text* drawableText = new sf::Text(text.c_str(), *(this->textFont));
 
-    drawableText->setOutlineColor(sf::Color(200, 200, 200));
+    drawableText->setOutlineColor(sf::Color(200, 200, 200, 100));
     drawableText->setOutlineThickness(1.0f);
     drawableText->setPosition(this->textCursorPos);
+    //drawableText->setColor(sf::Color(0, 0, 0, 0));
+    drawableText->setFillColor(sf::Color(drawableText->getFillColor().r,
+                                         drawableText->getFillColor().g,
+                                         drawableText->getFillColor().b,
+                                         100));
     this->objectsToDraw.push_back(drawableText);
 
     this->textCursorPos += sf::Vector2f(0.0f, drawableText->getGlobalBounds().height);

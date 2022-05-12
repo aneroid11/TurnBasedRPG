@@ -8,15 +8,13 @@
 int main()
 {
     GameScroll* scroll = GameScroll::getInstance();
-    scroll->display(L"Я проснулся");
-    scroll->display(L"Это не было легко...");
-    scroll->display(L"Это было очень тяжело");
-    scroll->display(L"Это было очень тяжело");
-    scroll->display(L"Это было очень тяжело");
-    scroll->display(L"Это было очень тяжело");
-    scroll->display(L"Это было очень тяжело");
-    scroll->display(L"Это было очень тяжело");
-    scroll->display(L"Крайне тяжело");
+    scroll->display(L"Хэллоу ворлд");
+    scroll->display(L"Хэллоу ворлд");
+    scroll->display(L"Хэллоу ворлд");
+    scroll->display(L"аыфвофщывлщлвфщ");
+    scroll->display(L"Хэллоу ворлд");
+    scroll->display(L"Хэллоу ворлд");
+    scroll->display(L"Ывыщаылщлащвылащыл");
 
     //GameScroll::getInstance()->display("this is going to be displayed by GameScroll");
     /*sf::RenderWindow window(sf::VideoMode(750, 1000), "Resolution res");

@@ -19,7 +19,6 @@ public:
     void display(std::wstring text);
 
 private:
-
     GameScroll();
     GameScroll(const GameScroll& gs) = delete;
     ~GameScroll();
