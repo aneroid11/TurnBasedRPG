@@ -19,6 +19,7 @@ public:
     static void deleteInstance();
 
     void display(std::wstring text);
+    std::wstring getUserChoice(const std::list<std::wstring>& choices);
 
 private:
     GameScroll();

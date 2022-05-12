@@ -125,3 +125,11 @@ void GameScroll::display(std::wstring text)
 
     this->drawScrollUntilUserInput();
 }
+
+std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
+{
+    // вывести на экран список возможных вариантов в виде кнопок, считать нажатие на кнопку и вернуть
+    // тот вариант, на который нажал игрок
+
+    return *choices.cbegin();
+}
