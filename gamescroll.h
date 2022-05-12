@@ -10,6 +10,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "screenobject.h"
+
 class GameScroll
 {
 public:
@@ -31,7 +33,7 @@ private:
     void drawScrollUntilUserInput();
 
     sf::RenderWindow* window = nullptr;
-    std::list<sf::Drawable *> objectsToDraw;
+    std::list<ScreenObject *> objectsToDraw;
 
     sf::Font* textFont;
     sf::Texture* bgTexture;

@@ -1,5 +1,6 @@
 #include "gamescroll.h"
 #include "errorandexit.h"
+#include "appearingtext.h"
 
 GameScroll* GameScroll::instance = nullptr;
 
@@ -28,9 +29,9 @@ GameScroll::~GameScroll()
     {
         delete this->window;
     }
-    for (sf::Drawable* d : this->objectsToDraw)
+    for (ScreenObject* o : this->objectsToDraw)
     {
-        delete d;
+        delete o;
     }
 
     delete this->textFont;
@@ -80,9 +81,13 @@ void GameScroll::drawScrollUntilUserInput()
         this->window->clear();
         this->window->draw(*this->bgSprite);
 
-        for (sf::Drawable* obj : objectsToDraw)
+        for (ScreenObject* obj : objectsToDraw)
         {
-            this->window->draw(*obj);
+            obj->update();
+        }
+        for (ScreenObject* obj : objectsToDraw)
+        {
+            obj->draw(this->window);
         }
 
         this->window->display();
@@ -91,20 +96,16 @@ void GameScroll::drawScrollUntilUserInput()
 
 void GameScroll::display(std::wstring text)
 {
-    sf::Text* drawableText = new sf::Text(text.c_str(), *(this->textFont));
+    TextParameters params;
+    params.characterSize = 30;
+    params.font = *this->textFont;
+    params.position = this->textCursorPos;
+    params.string = text.c_str();
+    AppearingText* drawableText = new AppearingText(params);
 
-    unsigned int alpha = 200;
-    drawableText->setOutlineColor(sf::Color(200, 200, 200, alpha));
-    drawableText->setOutlineThickness(1.0f);
-    drawableText->setPosition(this->textCursorPos);
-    //drawableText->setColor(sf::Color(0, 0, 0, 0));
-    drawableText->setFillColor(sf::Color(drawableText->getFillColor().r,
-                                         drawableText->getFillColor().g,
-                                         drawableText->getFillColor().b,
-                                         alpha));
     this->objectsToDraw.push_back(drawableText);
 
-    this->textCursorPos += sf::Vector2f(0.0f, drawableText->getGlobalBounds().height);
+    this->textCursorPos += sf::Vector2f(0.0f, drawableText->getText().getGlobalBounds().height);
 
     this->drawScrollUntilUserInput();
 }
