@@ -1,7 +1,7 @@
 #ifndef APPEARINGTEXT_H
 #define APPEARINGTEXT_H
 
-#include "screenobject.h"
+#include "appearingobject.h"
 
 struct TextParameters
 {
@@ -11,14 +11,14 @@ struct TextParameters
     sf::Vector2f position;
 };
 
-class AppearingText : public ScreenObject
+class AppearingText : public AppearingObject
 {
 public:
     AppearingText(const TextParameters& params);
     ~AppearingText() override {}
 
-    void update() override;
     void draw(sf::RenderWindow* window) override;
+    void setAlpha(unsigned alpha) override;
 
     sf::Text getText() const { return this->text; }
 
@@ -26,9 +26,6 @@ public:
 
 private:
     sf::Text text;
-    sf::Clock clockSinceCreated;
-
-    float secondsToAppear;
 };
 
 #endif // APPEARINGTEXT_H
