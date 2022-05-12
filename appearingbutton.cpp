@@ -2,7 +2,6 @@
 
 AppearingButton::AppearingButton()
 {
-
 }
 
 AppearingButton::AppearingButton(std::wstring s, sf::Font& font, sf::Vector2f position, sf::Uint32 style)
@@ -332,6 +331,15 @@ void AppearingButton::update(sf::Event& e, sf::RenderWindow& window)
     }
         break;
     }
+}
+
+void AppearingButton::setAlpha(unsigned alpha)
+{
+    sf::Color prevButtonColor = m_button.getFillColor();
+    sf::Color prevTextColor = m_button.getFillColor();
+
+    m_button.setFillColor(sf::Color(prevButtonColor.r, prevButtonColor.g, prevButtonColor.b, alpha));
+    m_text.setFillColor(sf::Color(prevTextColor.r, prevTextColor.g, prevTextColor.b, alpha));
 }
 
 void AppearingButton::draw(sf::RenderTarget& target, sf::RenderStates states) const

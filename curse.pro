@@ -3,8 +3,14 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
+LIBS += -L"./libs/thor/bin/"
+
 LIBS += -lpthread
 LIBS += -lsfml-system -lsfml-graphics -lsfml-window
+LIBS += -lthor
+
+INCLUDEPATH += ./libs/thor/include/
+INCLUDEPATH += ./libs/aurora/include/
 
 SOURCES += \
         appearingbutton.cpp \

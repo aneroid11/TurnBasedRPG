@@ -3,6 +3,9 @@
 
 #include "appearingobject.h"
 
+#include <Thor/Shapes.hpp>
+#include <Thor/Graphics.hpp>
+
 namespace style
 {
 enum
@@ -58,6 +61,7 @@ public:
     sf::Uint32 getState() { return m_btnstate; }
 
     void update(sf::Event& e, sf::RenderWindow& window) override;
+    void setAlpha(unsigned alpha) override;
 
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
