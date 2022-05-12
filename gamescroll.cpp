@@ -1,6 +1,7 @@
 #include "gamescroll.h"
 #include "errorandexit.h"
 #include "appearingtext.h"
+#include "appearingbutton.h"
 
 GameScroll* GameScroll::instance = nullptr;
 
