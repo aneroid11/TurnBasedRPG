@@ -25,6 +25,8 @@ private:
     GameScroll(const GameScroll& gs) = delete;
     ~GameScroll();
 
+    void deleteScreenObjects();
+
     GameScroll operator =(const GameScroll& gs) = delete;
 
     static GameScroll* instance;

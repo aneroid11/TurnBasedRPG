@@ -22,6 +22,8 @@ public:
 
     sf::Text getText() const { return this->text; }
 
+    void setPosition(float x, float y) { text.setPosition(x, y); }
+
 private:
     sf::Text text;
     sf::Clock clockSinceCreated;

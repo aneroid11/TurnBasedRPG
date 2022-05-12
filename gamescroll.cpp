@@ -6,7 +6,7 @@ GameScroll* GameScroll::instance = nullptr;
 
 GameScroll::GameScroll()
 {
-    this->window = new sf::RenderWindow(sf::VideoMode(750, 1000), "Resolution res");
+    this->window = new sf::RenderWindow(sf::VideoMode(750, 800), "Resolution res");
 
     this->textFont = new sf::Font();
     if (!this->textFont->loadFromFile("resources/fonts/Ubuntu-B.ttf"))
@@ -29,14 +29,20 @@ GameScroll::~GameScroll()
     {
         delete this->window;
     }
-    for (ScreenObject* o : this->objectsToDraw)
-    {
-        delete o;
-    }
+    deleteScreenObjects();
 
     delete this->textFont;
     delete this->bgTexture;
     delete this->bgSprite;
+}
+
+void GameScroll::deleteScreenObjects()
+{
+    for (ScreenObject* o : this->objectsToDraw)
+    {
+        delete o;
+    }
+    this->objectsToDraw.clear();
 }
 
 GameScroll* GameScroll::getInstance()
@@ -103,9 +109,17 @@ void GameScroll::display(std::wstring text)
     params.string = text.c_str();
     AppearingText* drawableText = new AppearingText(params);
 
-    this->objectsToDraw.push_back(drawableText);
+    float textHeight = drawableText->getText().getGlobalBounds().height;
 
-    this->textCursorPos += sf::Vector2f(0.0f, drawableText->getText().getGlobalBounds().height);
+    if ((this->textCursorPos + sf::Vector2f(0.0f, textHeight)).y >= this->window->getSize().y)
+    {
+        this->deleteScreenObjects();
+        this->textCursorPos = sf::Vector2f(10.0f, 0.0f);
+        drawableText->setPosition(this->textCursorPos.x, this->textCursorPos.y);
+    }
+
+    this->objectsToDraw.push_back(drawableText);
+    this->textCursorPos += sf::Vector2f(0.0f, textHeight);
 
     this->drawScrollUntilUserInput();
 }
