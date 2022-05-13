@@ -13,7 +13,7 @@
 class AppearingButton : public AppearingObject, public ISubject
 {
 public:
-    AppearingButton(std::wstring str, sf::Font& font, sf::Vector2f position);
+    AppearingButton(std::wstring str, sf::Font& font);
     ~AppearingButton() override;
 
     void update(sf::Event& e, sf::RenderWindow& window) override;

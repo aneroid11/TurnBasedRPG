@@ -140,39 +140,23 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
     std::function<void()> func;
     func = std::bind(&GameScroll::buttonClickHandler, this);
 
-    std::list<AppearingButton*> buttons;
+    std::list<AppearingButton*> buttonsToAdd;
 
     for (const std::wstring& choice : choices)
     {
-        AppearingButton* button = new AppearingButton(choice, *this->textFont,
-                                                      sf::Vector2f(this->window->getSize().x / 2,
-                                                                   this->textCursorPos.y));
+        AppearingButton* button = new AppearingButton(choice, *this->textFont);
 
         button->attachObserver(this);
-        buttons.push_back(button);
+        buttonsToAdd.push_back(button);
+    }
+
+    for (AppearingButton* button : buttonsToAdd)
+    {
+        button->setPosition(sf::Vector2f(this->window->getSize().x / 2,
+                                         this->textCursorPos.y));
 
         this->textCursorPos.y += button->getSize().y;
         this->objectsToDraw.push_back(button);
-    }
-
-    /*if (this->textCursorPos.y >= this->window->getSize().y)
-    {
-        deleteScreenObjects();
-
-        for (AppearingButton* button : buttons)
-        {
-            sf::Vector2f prevPos = button->getPosition();
-            sf::Vector2f currPos = sf::Vector2f(prevPos.x, this->textCursorPos.y);
-
-            button->setPosition(currPos);
-
-            this->textCursorPos.y += button->getSize().y;
-        }
-    }*/
-
-    for (AppearingButton* button : buttons)
-    {
-        objectsToDraw.push_back(button);
     }
 
     this->gotInputFromUser = false;

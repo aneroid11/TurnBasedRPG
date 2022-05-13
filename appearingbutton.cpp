@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-AppearingButton::AppearingButton(std::wstring str, sf::Font& font, sf::Vector2f position)
+AppearingButton::AppearingButton(std::wstring str, sf::Font& font)
     : AppearingObject(0.2f)
 {
     this->text = new sf::Text(str, font);
@@ -15,11 +15,8 @@ AppearingButton::AppearingButton(std::wstring str, sf::Font& font, sf::Vector2f 
                                                                      1.0f, sf::Color(100, 100, 100)));
     this->background->setOrigin(this->background->getGlobalBounds().width / 2,
                                 0);
-    this->background->setPosition(position);
-
     this->text->setOrigin(this->text->getGlobalBounds().width / 2,
                           0);
-    this->text->setPosition(position);
 
     this->text->setFillColor(sf::Color(200, 200, 200));
     this->text->setOutlineThickness(1.0f);
