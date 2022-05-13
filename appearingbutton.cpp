@@ -6,7 +6,7 @@ AppearingButton::AppearingButton(std::wstring str, sf::Font& font, sf::Vector2f 
     : AppearingObject(0.2f), text(str, font)
 {
     sf::Vector2f textSize = sf::Vector2f(text.getGlobalBounds().width, text.getGlobalBounds().height);
-    float bgScaleCoef = 1.5f;
+    float bgScaleCoef = 2.0f;
     sf::Vector2f bgSize = sf::Vector2f(textSize.x * bgScaleCoef, textSize.y * bgScaleCoef);
     this->background = thor::Shapes::roundedRect(bgSize, 3.0f, sf::Color(100, 100, 100),
                                                  1.0f, sf::Color(100, 100, 100));
