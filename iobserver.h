@@ -8,7 +8,7 @@ class IObserver
 public:
     virtual ~IObserver() {}
 
-    virtual void update(std::string msgFromSubject) = 0;
+    virtual void update(const std::string msgFromSubject) = 0;
 };
 
 #endif // IOBSERVER_H

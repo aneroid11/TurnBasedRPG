@@ -61,6 +61,7 @@ void AppearingButton::update(sf::Event& event, sf::RenderWindow& window)
             if (this->background->getGlobalBounds().contains(sf::Vector2f(mousePos.x, mousePos.y)))
             {
                 std::cout << "clicked on a button\n";
+                this->notifyObservers("button was clicked");
             }
         }
     }

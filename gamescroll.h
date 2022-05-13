@@ -11,11 +11,12 @@
 #include <SFML/Graphics.hpp>
 
 #include "screenobject.h"
+#include "iobserver.h"
 
 const int GAME_TEXT = 0;
 const int CHOICE_BUTTON = 1;
 
-class GameScroll
+class GameScroll : public IObserver
 {
 public:
     static GameScroll* getInstance();
@@ -25,6 +26,8 @@ public:
     std::wstring getUserChoice(const std::list<std::wstring>& choices);
 
     void buttonClickHandler();
+
+    void update(const std::string msgFromSubject) override;
 
 private:
     GameScroll();

@@ -159,3 +159,8 @@ void GameScroll::buttonClickHandler()
 {
     this->gotInputFromUser = true;
 }
+
+void GameScroll::update(const std::string msgFromSubject)
+{
+    std::cout << "got a message from subject: " << msgFromSubject << "\n";
+}

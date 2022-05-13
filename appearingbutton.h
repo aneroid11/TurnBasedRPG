@@ -2,13 +2,15 @@
 #define APPEARINGBUTTON_H
 
 #include "appearingobject.h"
+#include "isubject.h"
 
 #include <Thor/Shapes.hpp>
 #include <Thor/Graphics.hpp>
 
 #include <functional>
+#include <list>
 
-class AppearingButton : public AppearingObject
+class AppearingButton : public AppearingObject, public ISubject
 {
 public:
     AppearingButton(std::wstring str, sf::Font& font, sf::Vector2f position);
@@ -23,6 +25,16 @@ public:
                             this->background->getGlobalBounds().height);
     }
 
+    void attachObserver(IObserver* observer) override { this->observers.push_back(observer); }
+    void detachObserver(IObserver* observer) override { this->observers.remove(observer); }
+    void notifyObservers(const std::string msg) override
+    {
+        for (IObserver* o : observers)
+        {
+            o->update(msg);
+        }
+    }
+
 protected:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
@@ -33,6 +45,8 @@ private:
     sf::ConvexShape* background = nullptr;
 
     bool clicked;
+
+    std::list<IObserver*> observers;
 };
 
 #endif // APPEARINGBUTTON_H
