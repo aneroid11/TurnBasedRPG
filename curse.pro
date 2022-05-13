@@ -19,7 +19,8 @@ SOURCES += \
         errorandexit.cpp \
         game.cpp \
         gamescroll.cpp \
-        main.cpp
+        main.cpp \
+        mainmenu.cpp
 
 HEADERS += \
     appearingbutton.h \
@@ -30,4 +31,5 @@ HEADERS += \
     gamescroll.h \
     iobserver.h \
     isubject.h \
+    mainmenu.h \
     screenobject.h

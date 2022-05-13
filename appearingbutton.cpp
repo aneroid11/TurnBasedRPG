@@ -8,7 +8,7 @@ AppearingButton::AppearingButton(std::wstring str, sf::Font& font, sf::Vector2f 
     this->text = new sf::Text(str, font);
 
     sf::Vector2f textSize = sf::Vector2f(text->getGlobalBounds().width, text->getGlobalBounds().height);
-    float bgScaleCoef = 2.0f;
+    float bgScaleCoef = 1.5f;
     sf::Vector2f bgSize = sf::Vector2f(textSize.x * bgScaleCoef, textSize.y * bgScaleCoef);
 
     this->background = new sf::ConvexShape(thor::Shapes::roundedRect(bgSize, 3.0f, sf::Color(100, 100, 100),

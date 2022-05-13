@@ -3,6 +3,8 @@
 #include "appearingtext.h"
 #include "appearingbutton.h"
 
+#include <algorithm>
+
 GameScroll* GameScroll::instance = nullptr;
 
 GameScroll::GameScroll()
@@ -138,21 +140,51 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
     std::function<void()> func;
     func = std::bind(&GameScroll::buttonClickHandler, this);
 
+    std::list<AppearingButton*> buttons;
+
     for (const std::wstring& choice : choices)
     {
         AppearingButton* button = new AppearingButton(choice, *this->textFont,
                                                       sf::Vector2f(this->window->getSize().x / 2,
                                                                    this->textCursorPos.y));
+
         button->attachObserver(this);
+        buttons.push_back(button);
 
         this->textCursorPos.y += button->getSize().y;
         this->objectsToDraw.push_back(button);
     }
 
+    /*if (this->textCursorPos.y >= this->window->getSize().y)
+    {
+        deleteScreenObjects();
+
+        for (AppearingButton* button : buttons)
+        {
+            sf::Vector2f prevPos = button->getPosition();
+            sf::Vector2f currPos = sf::Vector2f(prevPos.x, this->textCursorPos.y);
+
+            button->setPosition(currPos);
+
+            this->textCursorPos.y += button->getSize().y;
+        }
+    }*/
+
+    for (AppearingButton* button : buttons)
+    {
+        objectsToDraw.push_back(button);
+    }
+
     this->gotInputFromUser = false;
     this->lastShown = CHOICE_BUTTON;
-    this->drawScrollUntilUserInput();
-    this->deleteScreenObjects();
+
+    bool foundChoiceInList = false;
+    do
+    {
+        this->drawScrollUntilUserInput();
+
+        foundChoiceInList = (std::find(choices.cbegin(), choices.cend(), this->userChoice) != choices.cend());
+    } while (!foundChoiceInList);
 
     return this->userChoice;
 }

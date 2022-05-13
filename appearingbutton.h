@@ -25,6 +25,14 @@ public:
                             this->background->getGlobalBounds().height);
     }
 
+    sf::Vector2f getPosition() const { return this->background->getPosition(); }
+
+    void setPosition(const sf::Vector2f& pos)
+    {
+        this->background->setPosition(pos);
+        this->text->setPosition(pos);
+    }
+
     void attachObserver(IObserver* observer) override { this->observers.push_back(observer); }
     void detachObserver(IObserver* observer) override { this->observers.remove(observer); }
     void notifyObservers(const std::wstring msg) override
