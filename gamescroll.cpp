@@ -131,9 +131,15 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
     // вывести на экран список возможных вариантов в виде кнопок, считать нажатие на кнопку и вернуть
     // тот вариант, на который нажал игрок
 
-    AppearingButton* button = new AppearingButton(L"Кнопка Кнопочка", *this->textFont,
-                                                  sf::Vector2f(this->textCursorPos.x + 300, this->textCursorPos.y));
-    this->objectsToDraw.push_back(button);
+    for (const std::wstring& choice : choices)
+    {
+        AppearingButton* button = new AppearingButton(choice, *this->textFont,
+                                                      sf::Vector2f(this->window->getSize().x / 2,
+                                                                   this->textCursorPos.y));
+        this->textCursorPos.y += button->getSize().y;
+        this->objectsToDraw.push_back(button);
+    }
+
     this->drawScrollUntilUserInput();
 
     return L"Choice 1";

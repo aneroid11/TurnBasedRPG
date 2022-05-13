@@ -15,6 +15,12 @@ public:
     void update(sf::Event& e, sf::RenderWindow& window) override;
     void setAlpha(unsigned alpha) override;
 
+    sf::Vector2f getSize() const
+    {
+        return sf::Vector2f(this->background->getGlobalBounds().width,
+                            this->background->getGlobalBounds().height);
+    }
+
 protected:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
