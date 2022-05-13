@@ -26,4 +26,6 @@ HEADERS += \
     appearingtext.h \
     errorandexit.h \
     gamescroll.h \
+    iobserver.h \
+    isubject.h \
     screenobject.h

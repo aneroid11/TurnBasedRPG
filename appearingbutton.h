@@ -23,8 +23,6 @@ public:
                             this->background->getGlobalBounds().height);
     }
 
-    //void setClickHandler(std::function<void()> handler) { this->clickHandler = handler; }
-
 protected:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
@@ -33,8 +31,6 @@ private:
 
     sf::Text* text = nullptr;
     sf::ConvexShape* background = nullptr;
-
-    //std::function<void()> clickHandler;
 
     bool clicked;
 };
