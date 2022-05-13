@@ -12,7 +12,7 @@ public:
 
     virtual void attachObserver(IObserver* o) = 0;
     virtual void detachObserver(IObserver* o) = 0;
-    virtual void notifyObservers(const std::string msg) = 0;
+    virtual void notifyObservers(const std::wstring msg) = 0;
 };
 
 #endif // ISUBJECT_H

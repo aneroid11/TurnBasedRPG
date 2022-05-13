@@ -19,9 +19,14 @@ int main()
         L"Да-да"
     };
     std::wstring choice = scroll->getUserChoice(choices);
-    std::wcout << choice << "\n";
 
     scroll->display(L"Выбрал? Молодец.");
+
+    if (choice == L"Да-да")
+    {
+        scroll->display(L"Правда, мне не нравится твой выбор");
+        scroll->display(L"Поэтому давай его поменяем");
+    }
 
     GameScroll::deleteInstance();
 

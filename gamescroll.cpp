@@ -141,7 +141,7 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
         AppearingButton* button = new AppearingButton(choice, *this->textFont,
                                                       sf::Vector2f(this->window->getSize().x / 2,
                                                                    this->textCursorPos.y));
-        //button->setClickHandler(func);
+        button->attachObserver(this);
 
         this->textCursorPos.y += button->getSize().y;
         this->objectsToDraw.push_back(button);
@@ -152,7 +152,7 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
     this->drawScrollUntilUserInput();
     //this->deleteScreenObjects();
 
-    return L"Choice 1";
+    return this->userChoice;
 }
 
 void GameScroll::buttonClickHandler()
@@ -160,7 +160,8 @@ void GameScroll::buttonClickHandler()
     this->gotInputFromUser = true;
 }
 
-void GameScroll::update(const std::string msgFromSubject)
+void GameScroll::update(const std::wstring msgFromButton)
 {
-    std::cout << "got a message from subject: " << msgFromSubject << "\n";
+    this->userChoice = msgFromButton;
+    this->gotInputFromUser = true;
 }

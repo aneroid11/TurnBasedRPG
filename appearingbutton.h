@@ -27,7 +27,7 @@ public:
 
     void attachObserver(IObserver* observer) override { this->observers.push_back(observer); }
     void detachObserver(IObserver* observer) override { this->observers.remove(observer); }
-    void notifyObservers(const std::string msg) override
+    void notifyObservers(const std::wstring msg) override
     {
         for (IObserver* o : observers)
         {

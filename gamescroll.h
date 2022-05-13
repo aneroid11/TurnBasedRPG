@@ -27,7 +27,7 @@ public:
 
     void buttonClickHandler();
 
-    void update(const std::string msgFromSubject) override;
+    void update(const std::wstring msgFromSubject) override;
 
 private:
     GameScroll();
@@ -52,6 +52,7 @@ private:
     bool transferControlToCaller = true;
     sf::Vector2f textCursorPos = sf::Vector2f(10.0f, 0.0f);
 
+    std::wstring userChoice = L"";
     bool gotInputFromUser = false;
     int lastShown;
 };
