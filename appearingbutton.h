@@ -18,7 +18,7 @@ public:
 
 private:
     sf::Text text;
-    sf::ConvexShape background;
+    //sf::ConvexShape background;
 
     bool clicked;
 };

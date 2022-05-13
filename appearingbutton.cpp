@@ -6,14 +6,14 @@ AppearingButton::AppearingButton(std::wstring str, sf::Font& font, sf::Vector2f 
     : AppearingObject(0.2f), text(str, font)
 {
     sf::Vector2f textSize = sf::Vector2f(text.getGlobalBounds().width, text.getGlobalBounds().height);
-    float bgScaleCoef = 2.0f;
+    /*float bgScaleCoef = 2.0f;
     sf::Vector2f bgSize = sf::Vector2f(textSize.x * bgScaleCoef, textSize.y * bgScaleCoef);
     this->background = thor::Shapes::roundedRect(bgSize, 3.0f, sf::Color(100, 100, 100),
                                                  1.0f, sf::Color(100, 100, 100));
 
     this->background.setOrigin(this->background.getGlobalBounds().width / 2,
                                0);
-    this->background.setPosition(position);
+    this->background.setPosition(position);*/
 
     this->text.setOrigin(this->text.getGlobalBounds().width/2,
                          0);
@@ -32,7 +32,8 @@ AppearingButton::~AppearingButton()
 
 void AppearingButton::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    target.draw(this->background, states);
+    std::cout << "draw button\n";
+    //target.draw(this->background, states);
     target.draw(this->text, states);
 }
 
@@ -48,7 +49,8 @@ void AppearingButton::update(sf::Event& event, sf::RenderWindow& window)
         {
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
-            if (this->background.getGlobalBounds().contains(sf::Vector2f(mousePos.x, mousePos.y)))
+            //if (this->background.getGlobalBounds().contains(sf::Vector2f(mousePos.x, mousePos.y)))
+            if (this->text.getGlobalBounds().contains(sf::Vector2f(mousePos.x, mousePos.y)))
             {
                 std::cout << "clicked on a button\n";
             }
@@ -62,11 +64,11 @@ void AppearingButton::update(sf::Event& event, sf::RenderWindow& window)
 
 void AppearingButton::setAlpha(unsigned alpha)
 {
-    sf::Color bgColor = this->background.getFillColor();
+    //sf::Color bgColor = this->background.getFillColor();
     sf::Color textColor = this->text.getFillColor();
 
-    this->background.setFillColor(sf::Color(bgColor.r, bgColor.g, bgColor.b, alpha));
-    this->background.setOutlineColor(sf::Color(bgColor.r, bgColor.g, bgColor.b, alpha));
+    //this->background.setFillColor(sf::Color(bgColor.r, bgColor.g, bgColor.b, alpha));
+    //this->background.setOutlineColor(sf::Color(bgColor.r, bgColor.g, bgColor.b, alpha));
 
     this->text.setFillColor(sf::Color(textColor.r, textColor.g, textColor.b, alpha));
     this->text.setOutlineColor(sf::Color(textColor.r, textColor.g, textColor.b, alpha));

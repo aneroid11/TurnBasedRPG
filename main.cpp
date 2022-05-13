@@ -9,11 +9,8 @@ int main()
 {
     GameScroll* scroll = GameScroll::getInstance();
 
-    for (int i = 0; i < 10; i++)
-    {
-        std::wstring text = std::wstring(L"Текст\nТекст текст фщалыфщвлщфыщвлЧ\nТектфывл") + std::to_wstring(i);
-        scroll->display(text);
-    }
+    scroll->display(L"Выбери:");
+    scroll->display(L"Давай, выбирай:");
 
     std::list<std::wstring> choices = {
         L"Направо пойдёшь - коня потеряешь",
@@ -21,7 +18,6 @@ int main()
         L"Прямо пойдёшь - голову потеряешь"
     };
     std::wstring choice = scroll->getUserChoice(choices);
-
     std::wcout << choice << "\n";
 
     GameScroll::deleteInstance();

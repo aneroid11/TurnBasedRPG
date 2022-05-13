@@ -1,5 +1,7 @@
 #include "appearingtext.h"
 
+#include <iostream>
+
 AppearingText::AppearingText(const TextParameters& params)
     : AppearingObject(0.2f), text(params.string, params.font, params.characterSize)
 {
@@ -16,6 +18,7 @@ AppearingText::AppearingText(const TextParameters& params)
 
 void AppearingText::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
+    std::cout << "draw text\n";
     target.draw(this->text, states);
 }
 

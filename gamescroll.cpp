@@ -64,7 +64,7 @@ void GameScroll::deleteInstance()
 
 void GameScroll::drawScrollUntilUserInput()
 {
-    while (this->window->isOpen())
+    while (true)
     {
         sf::Event event;
         if (this->window->pollEvent(event))
@@ -76,10 +76,10 @@ void GameScroll::drawScrollUntilUserInput()
             }
             else if (event.type == sf::Event::MouseButtonPressed)
             {
-                /*if (event.mouseButton.button == sf::Mouse::Left)
+                if (event.mouseButton.button == sf::Mouse::Left)
                 {
-                    //return;
-                }*/
+                    return;
+                }
             }
         }
 
@@ -90,6 +90,8 @@ void GameScroll::drawScrollUntilUserInput()
 
         this->window->clear();
         this->window->draw(*this->bgSprite);
+
+        std::cout << objectsToDraw.size() << "\n";
 
         for (ScreenObject* obj : objectsToDraw)
         {
@@ -119,13 +121,9 @@ void GameScroll::display(std::wstring text)
         drawableText->setPosition(this->textCursorPos.x, this->textCursorPos.y);
     }
 
-    //this->objectsToDraw.push_back(drawableText);
+    this->objectsToDraw.push_back(drawableText);
 
     this->textCursorPos += sf::Vector2f(0.0f, textHeight);
-
-    AppearingButton* button = new AppearingButton(L"Кнопка Кнопочка", *this->textFont,
-                                                  sf::Vector2f(this->textCursorPos.x + 300, this->textCursorPos.y));
-    this->objectsToDraw.push_back(button);
 
     this->drawScrollUntilUserInput();
 }
@@ -135,5 +133,13 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
     // вывести на экран список возможных вариантов в виде кнопок, считать нажатие на кнопку и вернуть
     // тот вариант, на который нажал игрок
 
-    return *choices.cbegin();
+    std::cout << "getUserChoice()\n";
+
+    AppearingButton* button = new AppearingButton(L"Кнопка Кнопочка", *this->textFont,
+                                                  sf::Vector2f(this->textCursorPos.x + 300, this->textCursorPos.y));
+    this->objectsToDraw.clear();
+    this->objectsToDraw.push_back(button);
+    this->drawScrollUntilUserInput();
+
+    return L"Choice 1";
 }
