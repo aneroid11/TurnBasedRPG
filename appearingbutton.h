@@ -12,13 +12,17 @@ public:
     AppearingButton(std::wstring str, sf::Font& font, sf::Vector2f position);
     ~AppearingButton() override;
 
-    void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     void update(sf::Event& e, sf::RenderWindow& window) override;
     void setAlpha(unsigned alpha) override;
 
+protected:
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+
 private:
-    sf::Text text;
-    //sf::ConvexShape background;
+    AppearingButton(const AppearingButton& other) = delete;
+
+    sf::Text* text = nullptr;
+    //sf::ConvexShape* background = nullptr;
 
     bool clicked;
 };

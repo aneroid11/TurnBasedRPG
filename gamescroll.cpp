@@ -106,7 +106,7 @@ void GameScroll::display(std::wstring text)
 {
     TextParameters params;
     params.characterSize = 30;
-    params.font = *this->textFont;
+    params.font = this->textFont;
     params.position = this->textCursorPos;
     params.string = text.c_str();
     AppearingText* drawableText = new AppearingText(params);
@@ -126,6 +126,12 @@ void GameScroll::display(std::wstring text)
     this->textCursorPos += sf::Vector2f(0.0f, textHeight);
 
     this->drawScrollUntilUserInput();
+
+    /*AppearingButton* button = new AppearingButton(L"Кнопка Кнопочка", this->textFont,
+                                                  sf::Vector2f(this->textCursorPos.x + 300, this->textCursorPos.y));
+
+    this->objectsToDraw.push_back(button);
+    this->drawScrollUntilUserInput();*/
 }
 
 std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
@@ -137,7 +143,8 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
 
     AppearingButton* button = new AppearingButton(L"Кнопка Кнопочка", *this->textFont,
                                                   sf::Vector2f(this->textCursorPos.x + 300, this->textCursorPos.y));
-    this->objectsToDraw.clear();
+    //this->objectsToDraw.clear();
+    //this->deleteScreenObjects();
     this->objectsToDraw.push_back(button);
     this->drawScrollUntilUserInput();
 
