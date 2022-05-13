@@ -12,6 +12,9 @@
 
 #include "screenobject.h"
 
+const int GAME_TEXT = 0;
+const int CHOICE_BUTTON = 1;
+
 class GameScroll
 {
 public:
@@ -43,6 +46,9 @@ private:
     sf::Sprite* bgSprite;
     bool transferControlToCaller = true;
     sf::Vector2f textCursorPos = sf::Vector2f(10.0f, 0.0f);
+
+    bool gotInputFromUser = false;
+    int lastShown;
 };
 
 #endif // GAMESCROLL_H

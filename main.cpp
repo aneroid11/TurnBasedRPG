@@ -15,10 +15,13 @@ int main()
     std::list<std::wstring> choices = {
         L"Направо пойдёшь - коня потеряешь",
         L"Налево пойдёшь - золото найдёшь",
-        L"Прямо пойдёшь - голову потеряешь"
+        L"Прямо пойдёшь - голову потеряешь",
+        L"Да-да"
     };
     std::wstring choice = scroll->getUserChoice(choices);
     std::wcout << choice << "\n";
+
+    scroll->display(L"Выбрал? Молодец.");
 
     GameScroll::deleteInstance();
 

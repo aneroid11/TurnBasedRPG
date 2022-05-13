@@ -64,7 +64,7 @@ void GameScroll::deleteInstance()
 
 void GameScroll::drawScrollUntilUserInput()
 {
-    while (true)
+    while (!this->gotInputFromUser)
     {
         sf::Event event;
         if (this->window->pollEvent(event))
@@ -76,9 +76,9 @@ void GameScroll::drawScrollUntilUserInput()
             }
             else if (event.type == sf::Event::MouseButtonPressed)
             {
-                if (event.mouseButton.button == sf::Mouse::Left)
+                if (event.mouseButton.button == sf::Mouse::Left && this->lastShown != CHOICE_BUTTON)
                 {
-                    return;
+                    this->gotInputFromUser = true;
                 }
             }
         }
@@ -123,6 +123,8 @@ void GameScroll::display(std::wstring text)
 
     this->textCursorPos += sf::Vector2f(0.0f, textHeight);
 
+    this->gotInputFromUser = false;
+    this->lastShown = GAME_TEXT;
     this->drawScrollUntilUserInput();
 }
 
@@ -140,6 +142,8 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
         this->objectsToDraw.push_back(button);
     }
 
+    this->gotInputFromUser = false;
+    this->lastShown = CHOICE_BUTTON;
     this->drawScrollUntilUserInput();
 
     return L"Choice 1";
