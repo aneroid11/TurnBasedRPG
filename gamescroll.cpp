@@ -150,6 +150,13 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
         buttonsToAdd.push_back(button);
     }
 
+    const float buttonsBlockHeight = (*buttonsToAdd.begin())->getSize().y * buttonsToAdd.size();
+
+    if (this->textCursorPos.y + buttonsBlockHeight > this->window->getSize().y)
+    {
+        deleteScreenObjects();
+    }
+
     for (AppearingButton* button : buttonsToAdd)
     {
         button->setPosition(sf::Vector2f(this->window->getSize().x / 2,
