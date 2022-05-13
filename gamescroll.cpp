@@ -44,6 +44,8 @@ void GameScroll::deleteScreenObjects()
         delete o;
     }
     this->objectsToDraw.clear();
+
+    this->textCursorPos = sf::Vector2f(10.0f, 0.0f);
 }
 
 GameScroll* GameScroll::getInstance()
@@ -150,7 +152,7 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
     this->gotInputFromUser = false;
     this->lastShown = CHOICE_BUTTON;
     this->drawScrollUntilUserInput();
-    //this->deleteScreenObjects();
+    this->deleteScreenObjects();
 
     return this->userChoice;
 }

@@ -12,21 +12,30 @@ int main()
     scroll->display(L"Выбери:");
     scroll->display(L"Давай, выбирай:");
 
-    std::list<std::wstring> choices = {
-        L"Направо пойдёшь - коня потеряешь",
-        L"Налево пойдёшь - золото найдёшь",
-        L"Прямо пойдёшь - голову потеряешь",
-        L"Да-да"
-    };
-    std::wstring choice = scroll->getUserChoice(choices);
-
-    scroll->display(L"Выбрал? Молодец.");
-
-    if (choice == L"Да-да")
+    do
     {
-        scroll->display(L"Правда, мне не нравится твой выбор");
-        scroll->display(L"Поэтому давай его поменяем");
-    }
+        std::list<std::wstring> choices = {
+            L"Направо пойдёшь - коня потеряешь",
+            L"Налево пойдёшь - золото найдёшь",
+            L"Прямо пойдёшь - голову потеряешь",
+            L"Да-да"
+        };
+        std::wstring choice = scroll->getUserChoice(choices);
+
+        scroll->display(L"Выбрал? Молодец.");
+
+        if (choice == L"Да-да")
+        {
+            scroll->display(L"Правда, мне не нравится твой выбор");
+            scroll->display(L"Поэтому давай его поменяем");
+        }
+        else
+        {
+            break;
+        }
+    } while (true);
+
+    scroll->display(L"Вот теперь хорошо.");
 
     GameScroll::deleteInstance();
 
