@@ -133,11 +133,16 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
     // вывести на экран список возможных вариантов в виде кнопок, считать нажатие на кнопку и вернуть
     // тот вариант, на который нажал игрок
 
+    std::function<void()> func;
+    func = std::bind(&GameScroll::buttonClickHandler, this);
+
     for (const std::wstring& choice : choices)
     {
         AppearingButton* button = new AppearingButton(choice, *this->textFont,
                                                       sf::Vector2f(this->window->getSize().x / 2,
                                                                    this->textCursorPos.y));
+        //button->setClickHandler(func);
+
         this->textCursorPos.y += button->getSize().y;
         this->objectsToDraw.push_back(button);
     }
@@ -145,6 +150,12 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
     this->gotInputFromUser = false;
     this->lastShown = CHOICE_BUTTON;
     this->drawScrollUntilUserInput();
+    //this->deleteScreenObjects();
 
     return L"Choice 1";
+}
+
+void GameScroll::buttonClickHandler()
+{
+    this->gotInputFromUser = true;
 }

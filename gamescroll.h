@@ -24,6 +24,8 @@ public:
     void display(std::wstring text);
     std::wstring getUserChoice(const std::list<std::wstring>& choices);
 
+    void buttonClickHandler();
+
 private:
     GameScroll();
     GameScroll(const GameScroll& gs) = delete;
