@@ -17,6 +17,7 @@ SOURCES += \
         appearingobject.cpp \
         appearingtext.cpp \
         errorandexit.cpp \
+        game.cpp \
         gamescroll.cpp \
         main.cpp
 
@@ -25,6 +26,7 @@ HEADERS += \
     appearingobject.h \
     appearingtext.h \
     errorandexit.h \
+    game.h \
     gamescroll.h \
     iobserver.h \
     isubject.h \

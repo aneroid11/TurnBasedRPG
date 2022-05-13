@@ -7,7 +7,7 @@ GameScroll* GameScroll::instance = nullptr;
 
 GameScroll::GameScroll()
 {
-    this->window = new sf::RenderWindow(sf::VideoMode(750, 800), "Resolution res");
+    this->window = new sf::RenderWindow(sf::VideoMode(750, 800), "Rupture");
 
     this->textFont = new sf::Font();
     if (!this->textFont->loadFromFile("resources/fonts/Ubuntu-B.ttf"))
