@@ -27,7 +27,6 @@ AppearingText::~AppearingText()
 
 void AppearingText::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    std::cout << "draw text\n";
     target.draw(*this->text, states);
 }
 

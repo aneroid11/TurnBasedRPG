@@ -22,7 +22,7 @@ private:
     AppearingButton(const AppearingButton& other) = delete;
 
     sf::Text* text = nullptr;
-    //sf::ConvexShape* background = nullptr;
+    sf::ConvexShape* background = nullptr;
 
     bool clicked;
 };

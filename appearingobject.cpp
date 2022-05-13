@@ -9,8 +9,6 @@ AppearingObject::AppearingObject(float secondsToAppear)
 
 void AppearingObject::update(sf::Event& ev, sf::RenderWindow& window)
 {
-    std::cout << "AppearingObject::update()\n";
-
     (void)ev;
     (void)window;
 

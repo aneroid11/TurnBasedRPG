@@ -91,8 +91,6 @@ void GameScroll::drawScrollUntilUserInput()
         this->window->clear();
         this->window->draw(*this->bgSprite);
 
-        std::cout << objectsToDraw.size() << "\n";
-
         for (ScreenObject* obj : objectsToDraw)
         {
             this->window->draw(*obj);
@@ -126,12 +124,6 @@ void GameScroll::display(std::wstring text)
     this->textCursorPos += sf::Vector2f(0.0f, textHeight);
 
     this->drawScrollUntilUserInput();
-
-    /*AppearingButton* button = new AppearingButton(L"Кнопка Кнопочка", this->textFont,
-                                                  sf::Vector2f(this->textCursorPos.x + 300, this->textCursorPos.y));
-
-    this->objectsToDraw.push_back(button);
-    this->drawScrollUntilUserInput();*/
 }
 
 std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
@@ -139,12 +131,8 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
     // вывести на экран список возможных вариантов в виде кнопок, считать нажатие на кнопку и вернуть
     // тот вариант, на который нажал игрок
 
-    std::cout << "getUserChoice()\n";
-
     AppearingButton* button = new AppearingButton(L"Кнопка Кнопочка", *this->textFont,
                                                   sf::Vector2f(this->textCursorPos.x + 300, this->textCursorPos.y));
-    //this->objectsToDraw.clear();
-    //this->deleteScreenObjects();
     this->objectsToDraw.push_back(button);
     this->drawScrollUntilUserInput();
 
