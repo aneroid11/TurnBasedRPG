@@ -4,7 +4,7 @@
 
 Game::Game()
 {
-    GameScroll::getInstance();
+    this->scroll = GameScroll::getInstance();
 }
 
 Game::~Game()
@@ -23,31 +23,32 @@ bool Game::saveFileExists() const
 // this method should receive player as a parameter.
 void Game::runDriver()
 {
-
+    for (int i = 0; i < 10; i++)
+    {
+        this->scroll->display(L"Игровое сообщение");
+    }
 }
 
 void Game::run()
 {
-    MainMenu* menu = new MainMenu();
-    delete menu;
+    //MainMenu* menu = new MainMenu();
+    //delete menu;
 
-    GameScroll* scroll = GameScroll::getInstance();
-
-    if (saveFileExists())
+    if (this->saveFileExists())
     {
-        scroll->display(L"Загрузить сохранение?");
+        this->scroll->display(L"Загрузить сохранение?");
         std::list<std::wstring> choices = { L"Да", L"Нет" };
-        std::wstring choice = scroll->getUserChoice(choices);
+        std::wstring choice = this->scroll->getUserChoice(choices);
 
         if (choice == L"Да")
         {
-            scroll->display(L"Загружаем...");
+            this->scroll->display(L"Загружаем...");
 
-            // Load the save file.
+            // Load the save file here.
         }
     }
 
-    GameScroll::deleteInstance();
+    this->runDriver();
 
     /*while (true)
     {
