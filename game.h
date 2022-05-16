@@ -8,6 +8,10 @@ public:
     ~Game();
 
     void run();
+
+    void runDriver();
+
+    bool saveFileExists() const;
 };
 
 #endif // GAME_H
