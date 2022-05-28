@@ -6,6 +6,7 @@
 #include "inventory.h"
 #include "casinolocat.h"
 #include "toolsshoplocat.h"
+#include "zdrasshoplocat.h"
 
 #include <map>
 
@@ -72,22 +73,32 @@ void Game::run()
         locations[L"Инвентарь"] = new Inventory();
         locations[L"Казино"] = new CasinoLocat();
         locations[L"Магазин инструментов"] = new ToolsShopLocat();
+        locations[L"Zdras Shop"] = new ZdrasShopLocat();
 
         locations[L"Дом"]->setPossibleLocations({
                                                     locations[L"Инвентарь"],
                                                     locations[L"Казино"],
-                                                    locations[L"Магазин инструментов"]
+                                                    locations[L"Магазин инструментов"],
+                                                    locations[L"Zdras Shop"]
                                                 });
         locations[L"Казино"]->setPossibleLocations({
                                                        locations[L"Инвентарь"],
                                                        locations[L"Дом"],
-                                                       locations[L"Магазин инструментов"]
+                                                       locations[L"Магазин инструментов"],
+                                                       locations[L"Zdras Shop"]
                                                    });
         locations[L"Магазин инструментов"]->setPossibleLocations({
                                                                      locations[L"Инвентарь"],
                                                                      locations[L"Дом"],
-                                                                     locations[L"Казино"]
+                                                                     locations[L"Казино"],
+                                                                     locations[L"Zdras Shop"]
                                                                  });
+        locations[L"Zdras Shop"]->setPossibleLocations({
+                                                           locations[L"Инвентарь"],
+                                                           locations[L"Дом"],
+                                                           locations[L"Казино"],
+                                                           locations[L"Магазин инструментов"]
+                                                       });
 
         Player* player = new Player(locations[L"Дом"]);
         player->addToEquipment(L"палка");

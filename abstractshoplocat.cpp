@@ -6,6 +6,8 @@
 
 std::wstring AbstractShopLocat::genBuyOption(std::wstring item)
 {
+    if (prices.count(item) < 1) { return L""; }
+
     return (L"Купить [" +
             item +
             L"] - " +
@@ -15,6 +17,8 @@ std::wstring AbstractShopLocat::genBuyOption(std::wstring item)
 
 std::wstring AbstractShopLocat::genSellOption(std::wstring item)
 {
+    if (prices.count(item) < 1) { return L""; }
+
     return (L"Продать [" +
             item +
             L"] - " +

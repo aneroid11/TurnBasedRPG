@@ -26,7 +26,8 @@ SOURCES += \
         inventory.cpp \
         main.cpp \
         player.cpp \
-        toolsshoplocat.cpp
+        toolsshoplocat.cpp \
+        zdrasshoplocat.cpp
 
 HEADERS += \
     abstractlocation.h \
@@ -44,4 +45,5 @@ HEADERS += \
     isubject.h \
     player.h \
     screenobject.h \
-    toolsshoplocat.h
+    toolsshoplocat.h \
+    zdrasshoplocat.h
