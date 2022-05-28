@@ -5,14 +5,12 @@
 void HomeLocat::action(Player *player)
 {
     GameScroll* scroll = GameScroll::getInstance();
-    ScreenTextList list
-    {
-        {L"text", L"Смеркается. \nЧто будем делать?"},
-        {L"button", L"Спать"},
-        {L"button", L"Смотреть телек"}
-    };
 
-    if (scroll->displayAndWaitForChoice(list) == L"Спать")
+    scroll->addScreenText({L"text", L"Смеркается. \nЧто будем делать?"});
+    scroll->addScreenText({L"button", L"Спать"});
+    scroll->addScreenText({L"button", L"Смотреть телек"});
+
+    if (scroll->displayAddedObjectsAndChoice() == L"Спать")
     {
         player->setHealth(100);
 

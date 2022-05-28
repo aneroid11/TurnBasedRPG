@@ -12,6 +12,8 @@ public:
         this->previousLocation = nullptr;
     }
 
+    void displayStatus();
+
     AbstractLocation* getCurrentLocation() { return this->currentDestination; }
 
     void goToLocation(AbstractLocation* loc)

@@ -4,43 +4,42 @@
 
 std::wstring Inventory::showInventory(Player *player)
 {
-    ScreenTextList textList;
+    GameScroll* scroll = GameScroll::getInstance();
 
-    textList.push_back({L"text", L"Снаряжение:"});
+    scroll->addScreenText({L"text", L"Снаряжение:"});
 
     if (player->getEquipmentItems().size() < 1)
     {
-        textList.push_back({L"text", L"Пусто!"});
+        scroll->addScreenText({L"text", L"Пусто!"});
     }
     for (std::wstring eqItem : player->getEquipmentItems())
     {
-        textList.push_back({L"button", eqItem});
+        scroll->addScreenText({L"button", eqItem});
     }
 
-    textList.push_back({L"text", L"Инвентарь:"});
+    scroll->addScreenText({L"text", L"Инвентарь:"});
 
     if (player->getEquipmentItems().size() < 1)
     {
-        textList.push_back({L"text", L"Пуст!"});
+        scroll->addScreenText({L"text", L"Пуст!"});
     }
     for (std::wstring invItem : player->getInventoryItems())
     {
-        textList.push_back({L"button", invItem});
+        scroll->addScreenText({L"button", invItem});
     }
 
-    textList.push_back({L"button", L"\nЗакрыть"});
+    scroll->addScreenText({L"button", L"\nЗакрыть"});
 
-    return GameScroll::getInstance()->displayAndWaitForChoice(textList);
+    return scroll->displayAddedObjectsAndChoice();
 }
 
 void Inventory::action(Player *player)
 {
-    ScreenTextList textList
-    {
-        {L"text", L"В инвентаре пока ничего нет"},
-        {L"button", L"Ладно"}
-    };
-    GameScroll::getInstance()->displayAndWaitForChoice(textList);
+    GameScroll* scroll = GameScroll::getInstance();
+    scroll->addScreenText({L"text", L"В инвентаре пока ничего нет"});
+    scroll->addScreenText({L"button", L"Ладно"});
+
+    GameScroll::getInstance()->displayAddedObjectsAndChoice();
 
     player->goToPreviousLocation();
 }

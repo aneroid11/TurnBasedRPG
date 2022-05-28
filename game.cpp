@@ -83,6 +83,8 @@ void Game::run()
         {
             AbstractLocation* destination = this->selectNextLocation(player);
             player->goToLocation(destination);
+
+            player->displayStatus();
             player->getCurrentLocation()->action(player);
         }
 
