@@ -49,16 +49,11 @@ AbstractLocation* Game::selectNextLocation(Player *pl)
 
 void Game::run()
 {
-    //Console.WriteLine("Вы попали на островной город и находитесь в каком-то доме. Вам нужно уплыть с острова. Удачи!");
+    this->scroll->placeText(L"Вы попали на островной город и находитесь в каком-то доме. Вам нужно уплыть с острова. Удачи!");
+    this->scroll->placeOption(L"Начать");
+    this->scroll->placeOption(L"Не начинать");
 
-    std::vector< std::array<std::wstring, 2> > screenText
-    {
-        { L"text", L"Вы попали на островной город и находитесь \nв каком-то доме. Вам нужно уплыть с острова. \nУдачи!"},
-        { L"button", L"Начать" },
-        { L"button", L"Не начинать" }
-    };
-
-    std::wstring choice = this->scroll->displayAndWaitForChoice(screenText);
+    std::wstring choice = this->scroll->displayAddedObjectsAndChoice();
 
     if (choice == L"Не начинать")
     {
@@ -86,6 +81,8 @@ void Game::run()
                                                    });
 
         Player* player = new Player(locations[L"Дом"]);
+        player->addToEquipment(L"палка");
+        player->addToInventory(L"палка");
 
         while (true)
         {

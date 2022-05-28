@@ -14,6 +14,7 @@ INCLUDEPATH += ./libs/aurora/include/
 
 SOURCES += \
         abstractlocation.cpp \
+        abstractshoplocat.cpp \
         appearingbutton.cpp \
         appearingobject.cpp \
         appearingtext.cpp \
@@ -24,10 +25,12 @@ SOURCES += \
         homelocat.cpp \
         inventory.cpp \
         main.cpp \
-        player.cpp
+        player.cpp \
+        toolsshoplocat.cpp
 
 HEADERS += \
     abstractlocation.h \
+    abstractshoplocat.h \
     appearingbutton.h \
     appearingobject.h \
     appearingtext.h \
@@ -40,4 +43,5 @@ HEADERS += \
     iobserver.h \
     isubject.h \
     player.h \
-    screenobject.h
+    screenobject.h \
+    toolsshoplocat.h

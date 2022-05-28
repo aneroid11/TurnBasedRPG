@@ -176,6 +176,35 @@ void GameScroll::addScreenText(const std::array<std::wstring, 2> &text)
     this->addedScreenText.push_back(text);
 }
 
+void GameScroll::placeText(const std::wstring &text)
+{
+    const int maxLen = 46; // for CURRENT screen width
+
+    std::wstring line = text;
+
+    while (line.size() > maxLen)
+    {
+        std::wstring firstPart;
+        int i;
+
+        for (i = maxLen - 1; i > 0; i--)
+        {
+            if (iswspace(line[i]))
+            {
+                break;
+            }
+        }
+        for (int j = 0; j < i; j++)
+        {
+            firstPart += line[j];
+        }
+        line.erase(0, i + 1);
+        this->addScreenText({L"text", firstPart});
+    }
+
+    this->addScreenText({L"text", line});
+}
+
 std::wstring GameScroll::displayAddedObjectsAndChoice()
 {
     std::wstring choice = this->displayAndWaitForChoice(this->addedScreenText);

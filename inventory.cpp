@@ -20,7 +20,7 @@ std::wstring Inventory::showInventory(Player *player)
 
     scroll->addScreenText({L"text", L"Инвентарь:"});
 
-    if (player->getEquipmentItems().size() < 1)
+    if (player->getInventoryItems().size() < 1)
     {
         scroll->addScreenText({L"text", L"Пуст!"});
     }
@@ -41,9 +41,6 @@ void Inventory::action(Player *player)
     do
     {
         choice = this->showInventory(player);
-
-        std::vector<std::wstring> playerInv = player->getInventoryItems();
-        std::vector<std::wstring> playerEqp = player->getEquipmentItems();
 
         if (player->hasEquipped(choice))
         {
