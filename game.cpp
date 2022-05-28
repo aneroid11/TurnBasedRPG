@@ -19,16 +19,21 @@ bool Game::saveFileExists() const
 
 void Game::run()
 {
-    while (true)
-    {
-        std::vector< std::array<std::wstring, 2> > screenText {
-            { L"text", L"Добро пожаловать!"},
-            { L"text", L"текст 2!" },
-            { L"button", L"Кнопка" },
-            { L"text", L"Ещё текст" },
-            { L"button", L"Ещё кнопка" }
-        };
+    std::vector< std::array<std::wstring, 2> > screenText {
+        { L"text", L"Добро пожаловать!"},
+        { L"text", L"Ещё какой-то текст!" },
+        { L"button", L"Ещё кнопка" },
+        { L"text", L"Ещё текст" },
+        { L"button", L"Ещё кнопка" }
+    };
+    std::vector< std::array<std::wstring, 2> > screenText2 {
+        { L"text", L"Да-да!"},
+        { L"button", L"Некая кнопка" },
+        { L"text", L"Ещё какой-то текст!" },
+        { L"button", L"Ещё кнопка" },
+        { L"text", L"Ещё текст" }
+    };
 
-        this->scroll->displayAndWaitForChoice(screenText);
-    }
+    this->scroll->displayAndWaitForChoice(screenText);
+    this->scroll->displayAndWaitForChoice(screenText2);
 }

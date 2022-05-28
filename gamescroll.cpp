@@ -230,7 +230,7 @@ std::wstring GameScroll::displayAndWaitForChoice(const std::vector<std::array<st
         }
     }
 
-
+    this->gotInputFromUser = false;
 
     bool foundChoiceInList = false;
     do
