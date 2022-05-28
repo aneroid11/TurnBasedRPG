@@ -12,7 +12,7 @@ void HomeLocat::action(Player *player)
 
     if (scroll->displayAddedObjectsAndChoice() == L"Спать")
     {
-        player->setHealth(100);
+        player->heal(100);
 
         ScreenTextList list2
         {
@@ -23,12 +23,7 @@ void HomeLocat::action(Player *player)
     }
     else
     {
-        player->setHealth(player->getHealth() - 10);
-
-        if (player->getHealth() <= 0)
-        {
-            player->setHealth(1);
-        }
+        player->damage(10, L"Вы умерли.\nВас номинируют на премию Дарвина.");
 
         ScreenTextList list2
         {

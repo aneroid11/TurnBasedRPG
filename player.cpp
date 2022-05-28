@@ -12,3 +12,15 @@ void Player::displayStatus()
     text += L"\nЗдоровье: " + std::to_wstring(this->getHealth());
     scroll->addScreenText({L"text", text});
 }
+
+void Player::die(std::wstring msg)
+{
+    GameScroll* scroll = GameScroll::getInstance();
+
+    if (msg == L"") { msg = L"Вы мертвы."; }
+
+    scroll->placeText(msg);
+    scroll->placeOption(L"Завершить игру");
+    scroll->displayAddedObjectsAndChoice();
+    exit(0);
+}

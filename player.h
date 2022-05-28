@@ -3,6 +3,8 @@
 
 #include "abstractlocation.h"
 
+#include <algorithm>
+
 class Player
 {
 public:
@@ -27,7 +29,33 @@ public:
         std::swap(this->currentDestination, this->previousLocation);
     }
 
-    void setHealth(int health) { this->health = health; }
+    void die(std::wstring msg = L"");
+
+    void heal(int addHp)
+    {
+        this->health += addHp;
+
+        if (this->health > 100) { this->health = 100; }
+    }
+
+    void damage(int dmg, std::wstring deathMsg = L"")
+    {
+        this->health -= dmg;
+
+        if (this->health <= 0)
+        {
+            this->health = 0;
+            this->die(deathMsg);
+        }
+    }
+
+    void damageNotKill(int dmg)
+    {
+        this->health -= dmg;
+
+        if (this->health <= 0) { this->health = 1; }
+    }
+
     int getHealth() const { return this->health; }
 
     void setGold(int gold) { this->gold = gold; }
@@ -36,11 +64,42 @@ public:
     std::vector<std::wstring> getInventoryItems() const { return this->inventory; }
     std::vector<std::wstring> getEquipmentItems() const { return this->equipment; }
 
+    void addToInventory(std::wstring item) { this->inventory.push_back(item); }
+    void addToEquipment(std::wstring item) { this->equipment.push_back(item); }
+
+    void deleteFromInventory(std::wstring item)
+    {
+        this->inventory.erase(std::find(this->inventory.begin(),
+                                        this->inventory.end(),
+                                        item));
+    }
+
+    void deleteFromEquipment(std::wstring item)
+    {
+        this->equipment.erase(std::find(this->equipment.begin(),
+                                        this->equipment.end(),
+                                        item));
+    }
+
+    bool hasInInventory(std::wstring item)
+    {
+        return std::count(this->inventory.begin(),
+                          this->inventory.end(),
+                          item);
+    }
+
+    bool hasEquipped(std::wstring item)
+    {
+        return std::count(this->equipment.begin(),
+                          this->equipment.end(),
+                          item);
+    }
+
 private:
     AbstractLocation* currentDestination;
     AbstractLocation* previousLocation;
 
-    int health = 100;
+    int health = 10;
     int gold = 30;
 
     std::vector<std::wstring> inventory;

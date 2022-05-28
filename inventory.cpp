@@ -28,7 +28,7 @@ std::wstring Inventory::showInventory(Player *player)
         scroll->addScreenText({L"button", invItem});
     }
 
-    scroll->addScreenText({L"button", L"\nЗакрыть"});
+    scroll->addScreenText({L"button", L"Закрыть"});
 
     return scroll->displayAddedObjectsAndChoice();
 }
@@ -36,10 +36,29 @@ std::wstring Inventory::showInventory(Player *player)
 void Inventory::action(Player *player)
 {
     GameScroll* scroll = GameScroll::getInstance();
-    scroll->addScreenText({L"text", L"В инвентаре пока ничего нет"});
-    scroll->addScreenText({L"button", L"Ладно"});
 
-    GameScroll::getInstance()->displayAddedObjectsAndChoice();
+    std::wstring choice = L"";
+
+    do
+    {
+        choice = this->showInventory(player);
+
+        std::vector<std::wstring> playerInv = player->getInventoryItems();
+        std::vector<std::wstring> playerEqp = player->getEquipmentItems();
+
+        if (player->hasEquipped(choice))
+        {
+            player->addToInventory(choice);
+            player->deleteFromEquipment(choice);
+        }
+        else if (player->hasInInventory(choice))
+        {
+            if (choice == L"банан" || choice == L"рыба")
+            {
+
+            }
+        }
+    } while (choice != L"Закрыть");
 
     player->goToPreviousLocation();
 }
