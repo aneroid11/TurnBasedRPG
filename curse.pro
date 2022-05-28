@@ -21,6 +21,7 @@ SOURCES += \
         game.cpp \
         gamescroll.cpp \
         homelocat.cpp \
+        inventory.cpp \
         main.cpp \
         player.cpp
 
@@ -33,6 +34,7 @@ HEADERS += \
     game.h \
     gamescroll.h \
     homelocat.h \
+    inventory.h \
     iobserver.h \
     isubject.h \
     player.h \

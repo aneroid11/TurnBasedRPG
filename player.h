@@ -22,8 +22,7 @@ public:
 
     void goToPreviousLocation()
     {
-        this->currentDestination = this->previousLocation;
-        this->previousLocation = nullptr;
+        std::swap(this->currentDestination, this->previousLocation);
     }
 
     void setHealth(int health) { this->health = health; }

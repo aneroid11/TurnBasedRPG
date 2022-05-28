@@ -1,6 +1,11 @@
 #include "game.h"
 #include "gamescroll.h"
 
+#include "player.h"
+#include "abstractlocation.h"
+
+#include <map>
+
 Game::Game()
 {
     this->scroll = GameScroll::getInstance();
@@ -41,6 +46,11 @@ void Game::run()
     }
     else
     {
-        // game...
+        std::map<std::wstring, AbstractLocation*> locations;
+
+        for (auto locPair : locations)
+        {
+            delete locPair.second;
+        }
     }
 }

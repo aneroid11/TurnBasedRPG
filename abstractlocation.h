@@ -9,6 +9,8 @@ class Player;
 class AbstractLocation
 {
 public:
+    virtual ~AbstractLocation() {}
+
     std::vector<AbstractLocation *> getPossibleLocations() const
     {
         return this->possibleLocations;
