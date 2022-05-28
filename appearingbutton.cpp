@@ -3,7 +3,7 @@
 #include <iostream>
 
 AppearingButton::AppearingButton(std::wstring str, sf::Font& font)
-    : AppearingObject(0.2f)
+    : AppearingObject(0.3f)
 {
     this->text = new sf::Text(str, font);
     this->text->setOrigin(this->text->getGlobalBounds().width / 2,

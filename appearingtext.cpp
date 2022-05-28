@@ -3,7 +3,7 @@
 #include <iostream>
 
 AppearingText::AppearingText(TextParameters params)
-    : AppearingObject(0.2f)
+    : AppearingObject(0.3f)
 {
     this->text = new sf::Text(params.string, *params.font, params.characterSize);
 

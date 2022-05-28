@@ -22,8 +22,8 @@ public:
 
     sf::Vector2f getSize() const
     {
-        return sf::Vector2f(this->text->getGlobalBounds().width * 1.5f,
-                            this->text->getGlobalBounds().height * 1.5f);
+        return sf::Vector2f(this->text->getGlobalBounds().width,
+                            this->text->getGlobalBounds().height);
     }
 
     sf::Vector2f getPosition() const { return this->text->getPosition(); }

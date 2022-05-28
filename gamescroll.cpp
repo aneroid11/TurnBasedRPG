@@ -63,7 +63,7 @@ void GameScroll::addButton(const std::wstring &buttonText)
                                      this->textCursorPos.y));
     button->attachObserver(this);
 
-    this->textCursorPos.y += button->getSize().y;
+    this->textCursorPos.y += button->getSize().y * 1.5;
 
     this->objectsToDraw.push_back(button);
 }
