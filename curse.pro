@@ -20,7 +20,8 @@ SOURCES += \
         errorandexit.cpp \
         game.cpp \
         gamescroll.cpp \
-        main.cpp
+        main.cpp \
+        player.cpp
 
 HEADERS += \
     abstractlocation.h \
@@ -32,4 +33,5 @@ HEADERS += \
     gamescroll.h \
     iobserver.h \
     isubject.h \
+    player.h \
     screenobject.h
