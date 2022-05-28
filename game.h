@@ -12,8 +12,6 @@ public:
     void run();
 
 private:
-    void runDriver();
-
     bool saveFileExists() const;
 
     GameScroll* scroll = nullptr;

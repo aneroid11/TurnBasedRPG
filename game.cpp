@@ -18,39 +18,9 @@ bool Game::saveFileExists() const
     return true;
 }
 
-// runs the main game loop.
-// main game loop is HERE.
-// this method should receive player as a parameter.
-void Game::runDriver()
-{
-    for (int i = 0; i < 10; i++)
-    {
-        this->scroll->display(L"Игровое сообщение");
-    }
-}
-
 void Game::run()
 {
-    //MainMenu* menu = new MainMenu();
-    //delete menu;
-
-    if (this->saveFileExists())
-    {
-        this->scroll->display(L"Загрузить сохранение?");
-        std::list<std::wstring> choices = { L"Да", L"Нет" };
-        std::wstring choice = this->scroll->getUserChoice(choices);
-
-        if (choice == L"Да")
-        {
-            this->scroll->display(L"Загружаем...");
-
-            // Load the save file here.
-        }
-    }
-
-    this->runDriver();
-
-    /*while (true)
+    while (true)
     {
         scroll->display(L"Добро пожаловать");
 
@@ -70,5 +40,5 @@ void Game::run()
         {
             scroll->display(L"Загружаем");
         }
-    }*/
+    }
 }
