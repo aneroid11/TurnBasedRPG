@@ -6,9 +6,9 @@
 
 std::wstring AbstractShopLocat::genBuyOption(std::wstring item)
 {
-    return (L"Купить " +
+    return (L"Купить [" +
             item +
-            L" - " +
+            L"] - " +
             std::to_wstring(prices[item]) +
             L" золотых");
 }

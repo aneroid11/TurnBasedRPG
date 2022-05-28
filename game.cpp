@@ -90,8 +90,10 @@ void Game::run()
                                                                  });
 
         Player* player = new Player(locations[L"Дом"]);
-        //player->addToEquipment(L"палка");
-        //player->addToInventory(L"палка");
+        player->addToEquipment(L"палка");
+        player->addToInventory(L"палка");
+        player->addToInventory(L"шапка");
+        player->addToInventory(L"шапка");
 
         while (true)
         {

@@ -11,7 +11,7 @@ AppearingButton::AppearingButton(std::wstring str, sf::Font& font)
 
     this->text->setFillColor(sf::Color(100, 230, 100));
     this->text->setOutlineThickness(0.5f);
-    this->text->setOutlineColor(sf::Color(230, 230, 230));
+    this->text->setOutlineColor(sf::Color(100, 230, 100));
 
     this->clicked = false;
 }

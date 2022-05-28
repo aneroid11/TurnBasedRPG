@@ -26,7 +26,7 @@ std::wstring Inventory::showInventory(Player *player)
     }
     for (std::wstring invItem : player->getInventoryItems())
     {
-        scroll->addScreenText({L"button", invItem});
+        scroll->placeOption(invItem);
     }
 
     return scroll->displayAddedObjectsAndChoice();
@@ -74,8 +74,8 @@ void Inventory::action(Player *player)
                 }
                 else
                 {
-                    player->addToEquipment(L"палка");
-                    player->deleteFromInventory(L"палка");
+                    player->addToEquipment(choice);
+                    player->deleteFromInventory(choice);
                 }
             }
             else
