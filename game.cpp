@@ -3,6 +3,8 @@
 
 #include "player.h"
 #include "abstractlocation.h"
+#include "homelocat.h"
+#include "inventory.h"
 
 #include <map>
 
@@ -47,7 +49,21 @@ void Game::run()
     else
     {
         std::map<std::wstring, AbstractLocation*> locations;
+        locations[L"Дом"] = new HomeLocat();
+        locations[L"Инвентарь"] = new Inventory();
 
+        locations[L"Дом"]->setPossibleLocations({locations[L"Инвентарь"]});
+
+        Player* player = new Player(locations[L"Дом"]);
+
+        while (true)
+        {
+            AbstractLocation* destination = this->selectNextLocation(player);
+            player->goToLocation(destination);
+            player->getCurrentLocation()->action(player);
+        }
+
+        delete player;
         for (auto locPair : locations)
         {
             delete locPair.second;
