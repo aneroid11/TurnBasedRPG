@@ -23,7 +23,8 @@ void Game::run()
 
     std::vector< std::array<std::wstring, 2> > screenText {
         { L"text", L"Вы попали на островной город и находитесь \nв каком-то доме. Вам нужно уплыть с острова. \nУдачи!"},
-        { L"button", L"Начать" }
+        { L"button", L"Начать" },
+        { L"button", L"Ещё какая-то кнопка" }
     };
 
     this->scroll->displayAndWaitForChoice(screenText);

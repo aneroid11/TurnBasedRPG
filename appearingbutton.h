@@ -22,21 +22,13 @@ public:
 
     sf::Vector2f getSize() const
     {
-        return sf::Vector2f(this->background->getGlobalBounds().width,
-                            this->background->getGlobalBounds().height);
+        return sf::Vector2f(this->text->getGlobalBounds().width * 1.5f,
+                            this->text->getGlobalBounds().height * 1.5f);
     }
 
-    sf::Vector2f getPosition() const { return this->background->getPosition(); }
+    sf::Vector2f getPosition() const { return this->text->getPosition(); }
 
-    void setPosition(const sf::Vector2f& pos)
-    {
-        this->background->setPosition(pos);
-        sf::Vector2f textPosition = sf::Vector2f(this->background->getPosition().x,
-                                                 this->background->getPosition().y -
-                                                 this->background->getGlobalBounds().height/4);
-
-        this->text->setPosition(textPosition);
-    }
+    void setPosition(const sf::Vector2f& pos) { this->text->setPosition(pos); }
 
     void attachObserver(IObserver* observer) override { this->observers.push_back(observer); }
     void detachObserver(IObserver* observer) override { this->observers.remove(observer); }
@@ -55,7 +47,6 @@ private:
     AppearingButton(const AppearingButton& other) = delete;
 
     sf::Text* text = nullptr;
-    sf::ConvexShape* background = nullptr;
 
     bool clicked;
 
