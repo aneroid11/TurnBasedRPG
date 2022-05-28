@@ -25,6 +25,9 @@ public:
     void addScreenText(const std::array<std::wstring, 2>& text);
     std::wstring displayAddedObjectsAndChoice();
 
+    void placeText(const std::wstring& text) { this->addScreenText({L"text", text}); }
+    void placeOption(const std::wstring& option) { this->addScreenText({L"button", option}); }
+
     void update(const std::wstring msgFromSubject) override;
 
 private:

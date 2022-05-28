@@ -16,7 +16,7 @@ void HomeLocat::action(Player *player)
 
         ScreenTextList list2
         {
-            {L"text", L"Вы просыпаетесь утром.\nЗдоровье за ночь полностью\n восстановилось."},
+            {L"text", L"Вы просыпаетесь утром.\nЗдоровье за ночь полностью восстановилось."},
             {L"button", L"Подняться с кровати"}
         };
         scroll->displayAndWaitForChoice(list2);
@@ -32,7 +32,7 @@ void HomeLocat::action(Player *player)
 
         ScreenTextList list2
         {
-            {L"text", L"Вы всю ночь смотрели телек и \nнаутро у вас болит голова -10 hp."},
+            {L"text", L"Вы всю ночь смотрели телек и наутро у вас \nболит голова -10 hp."},
             {L"text", L"Ваше здоровье: " + std::to_wstring(player->getHealth())},
             {L"button", L"Подняться с кровати"}
         };

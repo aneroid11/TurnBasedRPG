@@ -2,9 +2,9 @@
 #include "gamescroll.h"
 
 #include "player.h"
-#include "abstractlocation.h"
 #include "homelocat.h"
 #include "inventory.h"
+#include "casinolocat.h"
 
 #include <map>
 
@@ -74,8 +74,16 @@ void Game::run()
         std::map<std::wstring, AbstractLocation*> locations;
         locations[L"Дом"] = new HomeLocat();
         locations[L"Инвентарь"] = new Inventory();
+        locations[L"Казино"] = new CasinoLocat();
 
-        locations[L"Дом"]->setPossibleLocations({locations[L"Инвентарь"]});
+        locations[L"Дом"]->setPossibleLocations({
+                                                    locations[L"Инвентарь"],
+                                                    locations[L"Казино"]
+                                                });
+        locations[L"Казино"]->setPossibleLocations({
+                                                       locations[L"Инвентарь"],
+                                                       locations[L"Дом"]
+                                                   });
 
         Player* player = new Player(locations[L"Дом"]);
 
