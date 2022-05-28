@@ -13,6 +13,7 @@ INCLUDEPATH += ./libs/thor/include/
 INCLUDEPATH += ./libs/aurora/include/
 
 SOURCES += \
+        abstractlocation.cpp \
         appearingbutton.cpp \
         appearingobject.cpp \
         appearingtext.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
         main.cpp
 
 HEADERS += \
+    abstractlocation.h \
     appearingbutton.h \
     appearingobject.h \
     appearingtext.h \
