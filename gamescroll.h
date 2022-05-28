@@ -3,10 +3,9 @@
 
 #include <string>
 #include <iostream>
-#include <thread>
-#include <functional>
-#include <mutex>
 #include <list>
+#include <vector>
+#include <array>
 
 #include <SFML/Graphics.hpp>
 
@@ -24,6 +23,8 @@ public:
 
     void display(std::wstring text);
     std::wstring getUserChoice(const std::list<std::wstring>& choices);
+
+    std::wstring displayAndWaitForChoice(const std::vector< std::array<std::wstring, 2> >& screenObjects);
 
     void buttonClickHandler();
 

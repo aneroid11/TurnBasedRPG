@@ -1,6 +1,5 @@
 #include "game.h"
 #include "gamescroll.h"
-#include "mainmenu.h"
 
 Game::Game()
 {
@@ -22,6 +21,13 @@ void Game::run()
 {
     while (true)
     {
+        std::vector< std::array<std::wstring, 2> > screenText {
+            { L"text", L"Добро пожаловать!"},
+            { L"text", L"текст 2!" },
+            { L"button", L"Кнопка" },
+            { L"text", L"Ещё текст" },
+            { L"button", L"Ещё кнопка" }
+        };
         scroll->display(L"Добро пожаловать");
 
         std::list<std::wstring> choices = {
