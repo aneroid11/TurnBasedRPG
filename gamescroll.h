@@ -12,6 +12,8 @@
 #include "screenobject.h"
 #include "iobserver.h"
 
+typedef std::vector< std::array<std::wstring, 2> > ScreenTextList;
+
 const int GAME_TEXT = 0;
 const int CHOICE_BUTTON = 1;
 
@@ -24,7 +26,7 @@ public:
     void display(std::wstring text);
     std::wstring getUserChoice(const std::list<std::wstring>& choices);
 
-    std::wstring displayAndWaitForChoice(const std::vector< std::array<std::wstring, 2> >& screenObjects);
+    std::wstring displayAndWaitForChoice(const ScreenTextList& screenObjects);
 
     void update(const std::wstring msgFromSubject) override;
 

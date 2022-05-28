@@ -207,7 +207,7 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
     return this->userChoice;
 }
 
-std::wstring GameScroll::displayAndWaitForChoice(const std::vector<std::array<std::wstring, 2> >& screenObjects)
+std::wstring GameScroll::displayAndWaitForChoice(const ScreenTextList& screenObjects)
 {
     this->deleteScreenObjects();
     const int numScreenObjects = screenObjects.size();

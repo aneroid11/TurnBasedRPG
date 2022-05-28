@@ -20,6 +20,7 @@ SOURCES += \
         errorandexit.cpp \
         game.cpp \
         gamescroll.cpp \
+        homelocat.cpp \
         main.cpp \
         player.cpp
 
@@ -31,6 +32,7 @@ HEADERS += \
     errorandexit.h \
     game.h \
     gamescroll.h \
+    homelocat.h \
     iobserver.h \
     isubject.h \
     player.h \
