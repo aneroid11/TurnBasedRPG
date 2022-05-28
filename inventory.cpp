@@ -5,36 +5,40 @@
 const std::wstring equipSuffix = L" [использовать]";
 const std::wstring unequipSuffix = L" [переместить в инвентарь]";
 
+std::wstring genMsg(std::wstring item, std::wstring suffix)
+{
+    return item + suffix;
+}
+
+std::wstring getItemFromMsg(std::wstring msg, std::wstring suffix)
+{
+    if (msg.find(suffix) == std::wstring::npos)
+    {
+        return msg;
+    }
+
+    msg.erase(msg.find(suffix), suffix.size());
+    return msg;
+}
+
 std::wstring canEquipMsg(std::wstring item)
 {
-    return item + equipSuffix;
+    return genMsg(item, equipSuffix);
 }
 
 std::wstring getItemFromCanEquip(std::wstring msg)
 {
-    if (msg.find(equipSuffix) == std::wstring::npos)
-    {
-        return msg;
-    }
-
-    msg.erase(msg.find(equipSuffix), equipSuffix.size());
-    return msg;
+    return getItemFromMsg(msg, equipSuffix);
 }
 
 std::wstring canUnequipMsg(std::wstring item)
 {
-    return item + unequipSuffix;
+    return genMsg(item, unequipSuffix);
 }
 
 std::wstring getItemFromCanUnequip(std::wstring msg)
 {
-    if (msg.find(unequipSuffix) == std::wstring::npos)
-    {
-        return msg;
-    }
-
-    msg.erase(msg.find(unequipSuffix), unequipSuffix.size());
-    return msg;
+    return getItemFromMsg(msg, unequipSuffix);
 }
 
 std::wstring Inventory::showInventory(Player *player)
