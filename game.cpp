@@ -5,6 +5,7 @@
 #include "homelocat.h"
 #include "inventory.h"
 #include "casinolocat.h"
+#include "toolsshoplocat.h"
 
 #include <map>
 
@@ -70,19 +71,27 @@ void Game::run()
         locations[L"Дом"] = new HomeLocat();
         locations[L"Инвентарь"] = new Inventory();
         locations[L"Казино"] = new CasinoLocat();
+        locations[L"Магазин инструментов"] = new ToolsShopLocat();
 
         locations[L"Дом"]->setPossibleLocations({
                                                     locations[L"Инвентарь"],
-                                                    locations[L"Казино"]
+                                                    locations[L"Казино"],
+                                                    locations[L"Магазин инструментов"]
                                                 });
         locations[L"Казино"]->setPossibleLocations({
                                                        locations[L"Инвентарь"],
-                                                       locations[L"Дом"]
+                                                       locations[L"Дом"],
+                                                       locations[L"Магазин инструментов"]
                                                    });
+        locations[L"Магазин инструментов"]->setPossibleLocations({
+                                                                     locations[L"Инвентарь"],
+                                                                     locations[L"Дом"],
+                                                                     locations[L"Казино"]
+                                                                 });
 
         Player* player = new Player(locations[L"Дом"]);
-        player->addToEquipment(L"палка");
-        player->addToInventory(L"палка");
+        //player->addToEquipment(L"палка");
+        //player->addToInventory(L"палка");
 
         while (true)
         {

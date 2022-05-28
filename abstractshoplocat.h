@@ -15,6 +15,9 @@ protected:
 
 private:
     std::wstring showShop(Player* player);
+
+    std::wstring genSellOption(std::wstring item);
+    std::wstring genBuyOption(std::wstring item);
 };
 
 #endif // ABSTRACTSHOPLOCAT_H

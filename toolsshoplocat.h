@@ -6,6 +6,12 @@
 class ToolsShopLocat : public AbstractShopLocat
 {
 public:
+    std::wstring getName() override
+    {
+        return L"Магазин инструментов";
+    }
+
+    void action(Player* player) override;
 };
 
 #endif // TOOLSSHOPLOCAT_H

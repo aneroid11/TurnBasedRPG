@@ -48,8 +48,9 @@ void GameScroll::addText(const std::wstring &text)
     params.string = text.c_str();
     AppearingText* drawableText = new AppearingText(params);
 
-    float lineSpacing = this->textFont->getLineSpacing(params.characterSize) - params.characterSize;
-    float textHeight = drawableText->getText().getGlobalBounds().height + lineSpacing;
+    //float lineSpacing = this->textFont->getLineSpacing(params.characterSize) - params.characterSize;
+    //float textHeight = drawableText->getText().getGlobalBounds().height + lineSpacing;
+    float textHeight = textFont->getLineSpacing(params.characterSize);
 
     this->objectsToDraw.push_back(drawableText);
 
@@ -63,7 +64,7 @@ void GameScroll::addButton(const std::wstring &buttonText)
                                      this->textCursorPos.y));
     button->attachObserver(this);
 
-    this->textCursorPos.y += button->getSize().y * 1.5;
+    this->textCursorPos.y += button->getSize().y;
 
     this->objectsToDraw.push_back(button);
 }
@@ -178,7 +179,7 @@ void GameScroll::addScreenText(const std::array<std::wstring, 2> &text)
 
 void GameScroll::placeText(const std::wstring &text)
 {
-    const int maxLen = 46; // for CURRENT screen width
+    const int maxLen = 42; // for CURRENT screen width
 
     std::wstring line = text;
 

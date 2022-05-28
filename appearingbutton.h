@@ -22,8 +22,9 @@ public:
 
     sf::Vector2f getSize() const
     {
-        return sf::Vector2f(this->text->getGlobalBounds().width,
-                            this->text->getGlobalBounds().height);
+        int lineSpacing = text->getFont()->getLineSpacing(text->getCharacterSize());
+        return sf::Vector2f(text->getGlobalBounds().width,
+                            lineSpacing);
     }
 
     sf::Vector2f getPosition() const { return this->text->getPosition(); }
