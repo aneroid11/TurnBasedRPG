@@ -39,6 +39,35 @@ GameScroll::~GameScroll()
     delete this->bgSprite;
 }
 
+void GameScroll::addText(const std::wstring &text)
+{
+    TextParameters params;
+    params.characterSize = 30;
+    params.font = this->textFont;
+    params.position = this->textCursorPos;
+    params.string = text.c_str();
+    AppearingText* drawableText = new AppearingText(params);
+
+    float lineSpacing = this->textFont->getLineSpacing(params.characterSize) - params.characterSize;
+    float textHeight = drawableText->getText().getGlobalBounds().height + lineSpacing;
+
+    this->objectsToDraw.push_back(drawableText);
+
+    this->textCursorPos += sf::Vector2f(0.0f, textHeight);
+}
+
+void GameScroll::addButton(const std::wstring &buttonText)
+{
+    AppearingButton* button = new AppearingButton(buttonText, *this->textFont);
+    button->setPosition(sf::Vector2f(this->window->getSize().x / 2,
+                                     this->textCursorPos.y));
+    button->attachObserver(this);
+
+    this->textCursorPos.y += button->getSize().y;
+
+    this->objectsToDraw.push_back(button);
+}
+
 void GameScroll::deleteScreenObjects()
 {
     for (ScreenObject* o : this->objectsToDraw)
@@ -78,13 +107,14 @@ void GameScroll::drawScrollUntilUserInput()
                 this->window->close();
                 exit(0);
             }
-            else if (event.type == sf::Event::MouseButtonPressed)
+            // not needed if we have some buttons on the screen every time
+            /*else if (event.type == sf::Event::MouseButtonPressed)
             {
                 if (event.mouseButton.button == sf::Mouse::Left && this->lastShown != CHOICE_BUTTON)
                 {
                     this->gotInputFromUser = true;
                 }
-            }
+            }*/
         }
 
         for (ScreenObject* obj : objectsToDraw)
@@ -137,9 +167,6 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
     // вывести на экран список возможных вариантов в виде кнопок, считать нажатие на кнопку и вернуть
     // тот вариант, на который нажал игрок
 
-    std::function<void()> func;
-    func = std::bind(&GameScroll::buttonClickHandler, this);
-
     std::list<AppearingButton*> buttonsToAdd;
 
     for (const std::wstring& choice : choices)
@@ -182,12 +209,38 @@ std::wstring GameScroll::getUserChoice(const std::list<std::wstring>& choices)
 
 std::wstring GameScroll::displayAndWaitForChoice(const std::vector<std::array<std::wstring, 2> >& screenObjects)
 {
-    return screenObjects[0][1];
-}
+    this->deleteScreenObjects();
+    const int numScreenObjects = screenObjects.size();
 
-void GameScroll::buttonClickHandler()
-{
-    this->gotInputFromUser = true;
+    std::vector<std::wstring> choices;
+
+    for (int i = 0; i < numScreenObjects; i++)
+    {
+        const std::wstring type = screenObjects[i][0];
+        const std::wstring value = screenObjects[i][1];
+
+        if (type == L"text")
+        {
+            this->addText(value);
+        }
+        else if (type == L"button")
+        {
+            this->addButton(value);
+            choices.push_back(value);
+        }
+    }
+
+
+
+    bool foundChoiceInList = false;
+    do
+    {
+        this->drawScrollUntilUserInput();
+
+        foundChoiceInList = (std::find(choices.cbegin(), choices.cend(), this->userChoice) != choices.cend());
+    } while (!foundChoiceInList);
+
+    return this->userChoice;
 }
 
 void GameScroll::update(const std::wstring msgFromButton)

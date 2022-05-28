@@ -26,14 +26,15 @@ public:
 
     std::wstring displayAndWaitForChoice(const std::vector< std::array<std::wstring, 2> >& screenObjects);
 
-    void buttonClickHandler();
-
     void update(const std::wstring msgFromSubject) override;
 
 private:
     GameScroll();
     GameScroll(const GameScroll& gs) = delete;
     ~GameScroll();
+
+    void addText(const std::wstring& text);
+    void addButton(const std::wstring& buttonText);
 
     void deleteScreenObjects();
 

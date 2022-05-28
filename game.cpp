@@ -28,23 +28,7 @@ void Game::run()
             { L"text", L"Ещё текст" },
             { L"button", L"Ещё кнопка" }
         };
-        scroll->display(L"Добро пожаловать");
 
-        std::list<std::wstring> choices = {
-            L"Начать новую игру",
-            L"Загрузить сохранение",
-        };
-        std::wstring choice = scroll->getUserChoice(choices);
-
-        scroll->display(L"Понял");
-
-        if (choice == L"Начать новую игру")
-        {
-            scroll->display(L"Начинаем");
-        }
-        else
-        {
-            scroll->display(L"Загружаем");
-        }
+        this->scroll->displayAndWaitForChoice(screenText);
     }
 }
