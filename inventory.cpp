@@ -5,6 +5,7 @@
 std::wstring Inventory::showInventory(Player *player)
 {
     GameScroll* scroll = GameScroll::getInstance();
+    scroll->addScreenText({L"button", L"Закрыть"});
 
     scroll->addScreenText({L"text", L"Снаряжение:"});
 
@@ -27,8 +28,6 @@ std::wstring Inventory::showInventory(Player *player)
     {
         scroll->addScreenText({L"button", invItem});
     }
-
-    scroll->addScreenText({L"button", L"Закрыть"});
 
     return scroll->displayAddedObjectsAndChoice();
 }
@@ -55,7 +54,36 @@ void Inventory::action(Player *player)
         {
             if (choice == L"банан" || choice == L"рыба")
             {
+                int addHealth = 20;
 
+                if (choice == L"рыба")
+                {
+                    addHealth = 10;
+                }
+
+                player->heal(addHealth);
+
+                scroll->placeText(L"Вы съели " + choice);
+                scroll->placeText(L"Ваше здоровье увеличилось на " + std::to_wstring(addHealth));
+                scroll->placeText(L"Ваше здоровье: " + std::to_wstring(player->getHealth()));
+
+                player->deleteFromInventory(choice);
+            }
+            else if (choice == L"палка" || choice == L"шапка")
+            {
+                if (choice == L"палка" && player->hasEquipped(L"палка"))
+                {
+                    scroll->placeText(L"Нельзя переместить в снаряжение вторую палку!");
+                }
+                else
+                {
+                    player->addToEquipment(L"палка");
+                    player->deleteFromInventory(L"палка");
+                }
+            }
+            else
+            {
+                scroll->placeText(L"Вы не можете ничего сделать с этой вещью в данный момент.");
             }
         }
     } while (choice != L"Закрыть");

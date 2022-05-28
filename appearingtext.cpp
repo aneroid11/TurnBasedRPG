@@ -8,7 +8,7 @@ AppearingText::AppearingText(TextParameters params)
     this->text = new sf::Text(params.string, *params.font, params.characterSize);
 
     this->text->setOutlineColor(sf::Color(200, 200, 200, 0));
-    this->text->setOutlineThickness(1.0f);
+    this->text->setOutlineThickness(0.5f);
     this->text->setPosition(params.position);
 
     this->text->setFillColor(sf::Color(text->getOutlineColor().r,

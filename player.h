@@ -99,7 +99,7 @@ private:
     AbstractLocation* currentDestination;
     AbstractLocation* previousLocation;
 
-    int health = 10;
+    int health = 100;
     int gold = 30;
 
     std::vector<std::wstring> inventory;
