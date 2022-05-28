@@ -2,6 +2,41 @@
 #include "player.h"
 #include "gamescroll.h"
 
+const std::wstring equipSuffix = L" [использовать]";
+const std::wstring unequipSuffix = L" [переместить в инвентарь]";
+
+std::wstring canEquipMsg(std::wstring item)
+{
+    return item + equipSuffix;
+}
+
+std::wstring getItemFromCanEquip(std::wstring msg)
+{
+    if (msg.find(equipSuffix) == std::wstring::npos)
+    {
+        return msg;
+    }
+
+    msg.erase(msg.find(equipSuffix), equipSuffix.size());
+    return msg;
+}
+
+std::wstring canUnequipMsg(std::wstring item)
+{
+    return item + unequipSuffix;
+}
+
+std::wstring getItemFromCanUnequip(std::wstring msg)
+{
+    if (msg.find(unequipSuffix) == std::wstring::npos)
+    {
+        return msg;
+    }
+
+    msg.erase(msg.find(unequipSuffix), unequipSuffix.size());
+    return msg;
+}
+
 std::wstring Inventory::showInventory(Player *player)
 {
     GameScroll* scroll = GameScroll::getInstance();
@@ -15,7 +50,7 @@ std::wstring Inventory::showInventory(Player *player)
     }
     for (std::wstring eqItem : player->getEquipmentItems())
     {
-        scroll->addScreenText({L"button", eqItem});
+        scroll->placeOption(canUnequipMsg(eqItem));
     }
 
     scroll->addScreenText({L"text", L"Инвентарь:"});
@@ -26,7 +61,7 @@ std::wstring Inventory::showInventory(Player *player)
     }
     for (std::wstring invItem : player->getInventoryItems())
     {
-        scroll->placeOption(invItem);
+        scroll->placeOption(canEquipMsg(invItem));
     }
 
     return scroll->displayAddedObjectsAndChoice();
@@ -42,13 +77,16 @@ void Inventory::action(Player *player)
     {
         choice = this->showInventory(player);
 
-        if (player->hasEquipped(choice))
+        if (player->hasEquipped(getItemFromCanUnequip(choice)))
         {
+            choice = getItemFromCanUnequip(choice);
             player->addToInventory(choice);
             player->deleteFromEquipment(choice);
         }
-        else if (player->hasInInventory(choice))
+        else if (player->hasInInventory(getItemFromCanEquip(choice)))
         {
+            choice = getItemFromCanEquip(choice);
+
             if (choice == L"банан" || choice == L"рыба")
             {
                 int addHealth = 20;
