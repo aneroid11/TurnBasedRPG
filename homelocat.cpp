@@ -6,7 +6,7 @@ void HomeLocat::action(Player *player)
 {
     GameScroll* scroll = GameScroll::getInstance();
 
-    scroll->addScreenText({L"text", L"Смеркается. \nЧто будем делать?"});
+    scroll->addScreenText({L"text", L"Смеркается. Что будем делать?"});
     scroll->addScreenText({L"button", L"Спать"});
     scroll->addScreenText({L"button", L"Смотреть телек"});
 
@@ -14,23 +14,17 @@ void HomeLocat::action(Player *player)
     {
         player->heal(100);
 
-        ScreenTextList list2
-        {
-            {L"text", L"Вы просыпаетесь утром.\nЗдоровье за ночь полностью восстановилось."},
-            {L"button", L"Подняться с кровати"}
-        };
-        scroll->displayAndWaitForChoice(list2);
+        scroll->placeText(L"Вы просыпаетесь утром. Здоровье за ночь полностью восстановилось.");
+        scroll->placeOption(L"Подняться с кровати");
     }
     else
     {
-        player->damage(10, L"Вы умерли.\nВас номинируют на премию Дарвина.");
+        player->damage(10, L"Вы умерли. Вас номинируют на премию Дарвина.");
 
-        ScreenTextList list2
-        {
-            {L"text", L"Вы всю ночь смотрели телек и наутро у вас \nболит голова -10 hp."},
-            {L"text", L"Ваше здоровье: " + std::to_wstring(player->getHealth())},
-            {L"button", L"Подняться с кровати"}
-        };
-        scroll->displayAndWaitForChoice(list2);
+        scroll->placeText(L"Вы всю ночь смотрели телек и наутро у вас болит голова -10 hp.");
+        scroll->placeText(L"Ваше здоровье: " + std::to_wstring(player->getHealth()));
+        scroll->placeOption(L"Подняться с кровати");
     }
+
+    scroll->displayAddedObjectsAndChoice();
 }
