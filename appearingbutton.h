@@ -7,6 +7,7 @@
 #include <Thor/Shapes.hpp>
 #include <Thor/Graphics.hpp>
 
+#include <iostream>
 #include <functional>
 #include <list>
 
@@ -30,7 +31,11 @@ public:
     void setPosition(const sf::Vector2f& pos)
     {
         this->background->setPosition(pos);
-        this->text->setPosition(pos);
+        sf::Vector2f textPosition = sf::Vector2f(this->background->getPosition().x,
+                                                 this->background->getPosition().y -
+                                                 this->background->getGlobalBounds().height/4);
+
+        this->text->setPosition(textPosition);
     }
 
     void attachObserver(IObserver* observer) override { this->observers.push_back(observer); }

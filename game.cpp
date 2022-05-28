@@ -19,21 +19,12 @@ bool Game::saveFileExists() const
 
 void Game::run()
 {
+    //Console.WriteLine("Вы попали на островной город и находитесь в каком-то доме. Вам нужно уплыть с острова. Удачи!");
+
     std::vector< std::array<std::wstring, 2> > screenText {
-        { L"text", L"Добро пожаловать!"},
-        { L"text", L"Ещё какой-то текст!" },
-        { L"button", L"Ещё кнопка" },
-        { L"text", L"Ещё текст" },
-        { L"button", L"Ещё кнопка" }
-    };
-    std::vector< std::array<std::wstring, 2> > screenText2 {
-        { L"text", L"Да-да!"},
-        { L"button", L"Некая кнопка" },
-        { L"text", L"Ещё какой-то текст!" },
-        { L"button", L"Ещё кнопка" },
-        { L"text", L"Ещё текст" }
+        { L"text", L"Вы попали на островной город и находитесь \nв каком-то доме. Вам нужно уплыть с острова. \nУдачи!"},
+        { L"button", L"Начать" }
     };
 
     this->scroll->displayAndWaitForChoice(screenText);
-    this->scroll->displayAndWaitForChoice(screenText2);
 }
