@@ -82,8 +82,9 @@ void GameScroll::deleteScreenObjects()
 GameScroll* GameScroll::getInstance()
 {
     if (instance) { return instance; }
+    instance = new GameScroll();
 
-    return new GameScroll();
+    return instance;
 }
 
 void GameScroll::deleteInstance()

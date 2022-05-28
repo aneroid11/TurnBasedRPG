@@ -24,6 +24,29 @@ bool Game::saveFileExists() const
     return true;
 }
 
+AbstractLocation* Game::selectNextLocation(Player *pl)
+{
+    this->scroll->addScreenText({L"text", L"Варианты локаций для перехода:"});
+
+    std::vector<AbstractLocation*> possibleLocs = pl->getCurrentLocation()->getPossibleLocations();
+
+    for (AbstractLocation* loc : possibleLocs)
+    {
+        this->scroll->addScreenText({L"button", loc->getName()});
+    }
+
+    const std::wstring name = this->scroll->displayAddedObjectsAndChoice();
+
+    for (AbstractLocation* loc : possibleLocs)
+    {
+        if (name == loc->getName())
+        {
+            return loc;
+        }
+    }
+    return possibleLocs[0];
+}
+
 void Game::run()
 {
     //Console.WriteLine("Вы попали на островной город и находитесь в каком-то доме. Вам нужно уплыть с острова. Удачи!");
