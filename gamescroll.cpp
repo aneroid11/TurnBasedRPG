@@ -103,28 +103,19 @@ void GameScroll::drawScrollUntilUserInput()
     {
         sf::Event event;
 
-        do
+        if (window->pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
             {
                 this->window->close();
                 exit(0);
             }
-            // not needed if we have some buttons on the screen every time
-            /*else if (event.type == sf::Event::MouseButtonPressed)
-            {
-                if (event.mouseButton.button == sf::Mouse::Left && this->lastShown != CHOICE_BUTTON)
-                {
-                    this->gotInputFromUser = true;
-                }
-            }*/
-
-            for (ScreenObject* obj : objectsToDraw)
-            {
-                obj->update(event, *this->window);
-            }
         }
-        while (this->window->pollEvent(event));
+
+        for (ScreenObject* obj : objectsToDraw)
+        {
+            obj->update(event, *this->window);
+        }
 
         this->window->clear();
         this->window->draw(*this->bgSprite);
