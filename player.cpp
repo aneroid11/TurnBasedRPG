@@ -93,6 +93,27 @@ void Player::damage(int dmg, std::wstring deathMsg)
     }
 }
 
+void Player::addToInventory(std::wstring item)
+{
+    GameScroll* scroll = GameScroll::getInstance();
+
+    if (this->inventory.size() >= 10)
+    {
+        scroll->placeText(L"Ваш инвентарь не может содержать более чем 10 предметов!");
+        scroll->placeText(L"Вам придётся выкинуть один предмет, чтобы поместить [" + item + L"] в инвентарь");
+        scroll->placeText(L"Выберите, какой предмет вы хотите заменить:");
+
+        for (auto item : this->inventory)
+        {
+            scroll->placeOption(item);
+        }
+
+        deleteFromInventory(scroll->displayAddedObjectsAndChoice());
+    }
+
+    this->inventory.push_back(item);
+}
+
 void Player::die(std::wstring msg)
 {
     GameScroll* scroll = GameScroll::getInstance();

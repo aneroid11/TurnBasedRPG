@@ -174,7 +174,7 @@ void GameScroll::addScreenText(const std::array<std::wstring, 2> &text)
 
 void GameScroll::placeText(const std::wstring &text)
 {
-    const int maxLen = 42; // for CURRENT screen width
+    const int maxLen = 43; // for CURRENT screen width
 
     std::wstring line = text;
 

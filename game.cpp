@@ -91,9 +91,19 @@ AbstractLocation* Game::selectNextLocation(Player *pl)
     return possibleLocs[0];
 }
 
+void Game::showNewGameMsg()
+{
+    scroll->placeText(L"Вы попали на островной город и находитесь в каком-то доме. Вам нужно уплыть с острова.");
+    scroll->placeText(L"Вы начинаете с 30 золотыми монетами. В ближайших магазинах вы можете купить за них полезные вещи.");
+    scroll->placeText(L"Получить деньги можно разными способами, например, продать что-нибудь. За городом вы можете "
+                      L"найти места, в которых можно получить предметы на продажу.");
+    scroll->placeText(L"Не забывайте, что ваши здоровье и инвентарь не бесконечные. Вы не можете нести более 10 предметов в "
+                      L"инвентаре, а за городом могут встретиться враги.");
+    scroll->placeText(L"Удачи!");
+}
+
 void Game::run()
 {
-    this->scroll->placeText(L"Вы попали на островной город и находитесь в каком-то доме. Вам нужно уплыть с острова. Удачи!");
     this->scroll->placeOption(L"Начать новую игру");
 
     if (saveFileExists())
@@ -208,19 +218,23 @@ void Game::run()
         {
             load(player);
         }
+        else
+        {
+            showNewGameMsg();
+        }
 
         while (true)
         {
             AbstractLocation* destination = this->selectNextLocation(player);
             player->goToLocation(destination);
 
-            if (destination->getName() == L"Дом")
+            player->displayStatus();
+            player->getCurrentLocation()->action(player);
+
+            if (player->getCurrentLocation()->getName() == L"Дом")
             {
                 save(player);
             }
-
-            player->displayStatus();
-            player->getCurrentLocation()->action(player);
         }
 
         delete player;

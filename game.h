@@ -13,6 +13,8 @@ public:
     void run();
 
 private:
+    void showNewGameMsg();
+
     void save(Player* pl);
     void load(Player* pl);
     bool saveFileExists() const;

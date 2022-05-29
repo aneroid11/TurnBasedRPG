@@ -61,7 +61,7 @@ public:
     std::vector<std::wstring> getInventoryItems() const { return this->inventory; }
     std::vector<std::wstring> getEquipmentItems() const { return this->equipment; }
 
-    void addToInventory(std::wstring item) { this->inventory.push_back(item); }
+    void addToInventory(std::wstring item);
     void addToEquipment(std::wstring item) { this->equipment.push_back(item); }
 
     void deleteFromInventory(std::wstring item)
