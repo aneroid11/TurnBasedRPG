@@ -66,7 +66,7 @@ bool Player::deserializeFromJson(json j)
     }
     for (auto item : j["equipment"])
     {
-        addToInventory(stringToWstring(item));
+        addToEquipment(stringToWstring(item));
     }
 
     return true;

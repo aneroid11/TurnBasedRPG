@@ -206,7 +206,6 @@ void Game::run()
 
         if (choice == L"Загрузить сохранение")
         {
-            std::cout << "load\n";
             load(player);
         }
 
