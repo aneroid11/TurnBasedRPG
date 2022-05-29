@@ -10,6 +10,7 @@
 #include "citygatelocat.h"
 #include "fieldlocat.h"
 #include "hilllocat.h"
+#include "forestlocat.h"
 
 #include <map>
 
@@ -79,6 +80,8 @@ void Game::run()
         locations[L"Zdras Shop"] = new ZdrasShopLocat();
         locations[L"Выход из города"] = new CityGateLocat();
         locations[L"Поле"] = new FieldLocat();
+        locations[L"Лес"] = new ForestLocat();
+        locations[L"Холм"] = new HillLocat();
 
         locations[L"Дом"]->setPossibleLocations({
                                                     locations[L"Инвентарь"],
@@ -117,7 +120,18 @@ void Game::run()
                                                                 locations[L"Поле"]
                                                             });
         locations[L"Поле"]->setPossibleLocations({
-                                                     locations[L"Выход из города"]
+                                                     locations[L"Инвентарь"],
+                                                     locations[L"Выход из города"],
+                                                     locations[L"Лес"]
+                                                 });
+        locations[L"Лес"]->setPossibleLocations({
+                                                    locations[L"Инвентарь"],
+                                                    locations[L"Поле"],
+                                                    locations[L"Холм"]
+                                                });
+        locations[L"Холм"]->setPossibleLocations({
+                                                     locations[L"Инвентарь"],
+                                                     locations[L"Лес"]
                                                  });
 
         Player* player = new Player(locations[L"Дом"]);

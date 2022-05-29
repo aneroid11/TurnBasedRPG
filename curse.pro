@@ -24,6 +24,7 @@ SOURCES += \
         citygatelocat.cpp \
         errorandexit.cpp \
         fieldlocat.cpp \
+        forestlocat.cpp \
         game.cpp \
         gamescroll.cpp \
         hilllocat.cpp \
@@ -46,6 +47,7 @@ HEADERS += \
     citygatelocat.h \
     errorandexit.h \
     fieldlocat.h \
+    forestlocat.h \
     game.h \
     gamescroll.h \
     hilllocat.h \
