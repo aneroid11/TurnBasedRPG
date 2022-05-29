@@ -23,8 +23,10 @@ SOURCES += \
         casinolocat.cpp \
         citygatelocat.cpp \
         errorandexit.cpp \
+        fieldlocat.cpp \
         game.cpp \
         gamescroll.cpp \
+        hilllocat.cpp \
         homelocat.cpp \
         inventory.cpp \
         main.cpp \
@@ -43,8 +45,10 @@ HEADERS += \
     casinolocat.h \
     citygatelocat.h \
     errorandexit.h \
+    fieldlocat.h \
     game.h \
     gamescroll.h \
+    hilllocat.h \
     homelocat.h \
     inventory.h \
     iobserver.h \

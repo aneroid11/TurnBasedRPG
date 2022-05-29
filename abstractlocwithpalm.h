@@ -6,9 +6,6 @@
 class AbstractLocWithPalm : public AbstractFightLocation
 {
 public:
-    // TODO: replace
-    std::wstring getName() override { return L"Поле"; }
-
     void action(Player* pl) override;
 
 private:
