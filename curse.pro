@@ -19,6 +19,7 @@ SOURCES += \
         appearingobject.cpp \
         appearingtext.cpp \
         casinolocat.cpp \
+        citygatelocat.cpp \
         errorandexit.cpp \
         game.cpp \
         gamescroll.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     appearingobject.h \
     appearingtext.h \
     casinolocat.h \
+    citygatelocat.h \
     errorandexit.h \
     game.h \
     gamescroll.h \
