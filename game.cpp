@@ -14,6 +14,7 @@
 #include "pierwithangryfisherman.h"
 #include "pierwithgoodfisherman.h"
 #include "pierwithenglishman.h"
+#include "baywithboatlocat.h"
 
 #include <map>
 
@@ -89,6 +90,7 @@ void Game::run()
         locations[L"Пирс 1"] = new PierWithAngryFisherman();
         locations[L"Пирс 2"] = new PierWithGoodFisherman();
         locations[L"Пирс 3"] = new PierWithEnglishman();
+        locations[L"Бухта"] = new BayWithBoatLocat();
 
         locations[L"Дом"]->setPossibleLocations({
                                                     locations[L"Инвентарь"],
@@ -153,22 +155,15 @@ void Game::run()
                                                    });
         locations[L"Пирс 3"]->setPossibleLocations({
                                                        locations[L"Инвентарь"],
-                                                       locations[L"Пирс 2"]
+                                                       locations[L"Пирс 2"],
+                                                       locations[L"Бухта"]
                                                    });
+        locations[L"Бухта"]->setPossibleLocations({
+                                                      locations[L"Инвентарь"],
+                                                      locations[L"Пирс 3"]
+                                                  });
 
-        Player* player = new Player(locations[L"Холм"]);
-        player->addToEquipment(L"палка");
-        player->addToInventory(L"палка");
-        player->addToInventory(L"шапка");
-        player->addToInventory(L"шапка");
-        player->addToInventory(L"удочка");
-        player->setGold(51);
-        player->addToInventory(L"англо-русский словарь");
-
-        for (int i = 0; i < 5; i++)
-        {
-            player->addToInventory(L"червь");
-        }
+        Player* player = new Player(locations[L"Дом"]);
 
         while (true)
         {

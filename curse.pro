@@ -20,6 +20,7 @@ SOURCES += \
         appearingbutton.cpp \
         appearingobject.cpp \
         appearingtext.cpp \
+        baywithboatlocat.cpp \
         casinolocat.cpp \
         citygatelocat.cpp \
         errorandexit.cpp \
@@ -47,6 +48,7 @@ HEADERS += \
     appearingbutton.h \
     appearingobject.h \
     appearingtext.h \
+    baywithboatlocat.h \
     casinolocat.h \
     citygatelocat.h \
     errorandexit.h \
