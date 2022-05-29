@@ -47,7 +47,7 @@ void AbstractShopLocat::action(Player *player)
                     player->setGold(player->getGold() - prices[name]);
                     player->addToInventory(name);
 
-                    scroll->placeText(L"Вы купили " + name);
+                    scroll->placeText(L"Вы купили [" + name + L"]");
                     scroll->placeText(L"У вас осталось " + std::to_wstring(player->getGold()) + L" золотых");
                 }
                 else
@@ -65,7 +65,7 @@ void AbstractShopLocat::action(Player *player)
                 player->setGold(player->getGold() + price);
                 player->deleteFromInventory(item);
 
-                scroll->placeText(L"Вы продали: " + item);
+                scroll->placeText(L"Вы продали [" + item + L"]");
                 scroll->placeText(L"Теперь у вас " + std::to_wstring(player->getGold()) + L" золотых");
             }
         }

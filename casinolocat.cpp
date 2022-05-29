@@ -19,7 +19,7 @@ void CasinoLocat::action(Player *pl)
     {
         if (pl->getGold() < 5)
         {
-            scroll->placeOption(L"У вас недостаточно денег!");
+            scroll->placeText(L"У вас недостаточно денег!");
             return;
         }
 
