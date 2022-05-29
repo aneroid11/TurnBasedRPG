@@ -41,7 +41,7 @@ std::string readAllText(std::ifstream& in)
 void Game::save(Player *pl)
 {
     std::ofstream out("resources/.svpl.json");
-    out << pl->serializeToJson();
+    out << pl->serializeToJson().dump(2);
     out.close();
 
     scroll->placeText(L"Игра сохранена");
@@ -52,7 +52,12 @@ void Game::load(Player *pl)
     std::ifstream in("resources/.svpl.json");
     std::string str = readAllText(in);
     json plJson = json::parse(str);
-    pl->deserializeFromJson(plJson);
+
+    if (!pl->deserializeFromJson(plJson))
+    {
+        scroll->placeText(L"Сохранение было повреждено, поэтому его не удалось загрузить");
+        return;
+    }
 
     scroll->placeText(L"Сохранение загружено");
 }
@@ -201,6 +206,7 @@ void Game::run()
 
         if (choice == L"Загрузить сохранение")
         {
+            std::cout << "load\n";
             load(player);
         }
 

@@ -50,8 +50,26 @@ json Player::serializeToJson() const
     return j;
 }
 
-void Player::deserializeFromJson(json j)
+bool Player::deserializeFromJson(json j)
 {
+    if (!j.contains("health") || !j.contains("gold") || !j.contains("inventory") || !j.contains("equipment"))
+    {
+        return false;
+    }
+
+    health = j["health"];
+    gold = j["gold"];
+
+    for (auto item : j["inventory"])
+    {
+        addToInventory(stringToWstring(item));
+    }
+    for (auto item : j["equipment"])
+    {
+        addToInventory(stringToWstring(item));
+    }
+
+    return true;
 }
 
 void Player::damage(int dmg, std::wstring deathMsg)
