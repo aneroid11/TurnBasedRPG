@@ -8,7 +8,7 @@
 #include "toolsshoplocat.h"
 #include "zdrasshoplocat.h"
 #include "citygatelocat.h"
-#include "abstractfightlocation.h"
+#include "abstractlocwithpalm.h"
 
 #include <map>
 
@@ -77,7 +77,7 @@ void Game::run()
         locations[L"Магазин инструментов"] = new ToolsShopLocat();
         locations[L"Zdras Shop"] = new ZdrasShopLocat();
         locations[L"Выход из города"] = new CityGateLocat();
-        locations[L"Бой"] = new AbstractFightLocation();
+        locations[L"Пальма"] = new AbstractLocWithPalm();
 
         locations[L"Дом"]->setPossibleLocations({
                                                     locations[L"Инвентарь"],
@@ -113,9 +113,9 @@ void Game::run()
                                                                 locations[L"Казино"],
                                                                 locations[L"Магазин инструментов"],
                                                                 locations[L"Zdras Shop"],
-                                                                locations[L"Бой"]
+                                                                locations[L"Пальма"]
                                                             });
-        locations[L"Бой"]->setPossibleLocations({
+        locations[L"Пальма"]->setPossibleLocations({
                                                     locations[L"Выход из города"]
                                                 });
 

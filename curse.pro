@@ -15,6 +15,7 @@ INCLUDEPATH += ./libs/aurora/include/
 SOURCES += \
         abstractfightlocation.cpp \
         abstractlocation.cpp \
+        abstractlocwithpalm.cpp \
         abstractshoplocat.cpp \
         appearingbutton.cpp \
         appearingobject.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
 HEADERS += \
     abstractfightlocation.h \
     abstractlocation.h \
+    abstractlocwithpalm.h \
     abstractshoplocat.h \
     appearingbutton.h \
     appearingobject.h \
