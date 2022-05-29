@@ -28,7 +28,7 @@ void AbstractLocWithPalm::action(Player *pl)
 
                 scroll->placeText(L"С пальмы падает банан, вы его поднимаете и кладёте в инвентарь.");
             }
-            else if (shakesCount == 0 && getName() == L"Поле")
+            else if (shakesCount == 0 && getName() == L"Лес" && !pl->hasInInventory(L"англо-русский словарь"))
             {
                 scroll->placeText(L"С пальмы падает англо-русский словарь. Неизвестно, зачем он вам может пригодиться, но вы решаете положить его в инвентарь на всякий случай");
                 pl->addToInventory(L"англо-русский словарь");

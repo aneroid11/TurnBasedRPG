@@ -18,6 +18,7 @@ public:
     }
 
     json serializeToJson() const;
+    void deserializeFromJson(json j);
 
     void displayStatus();
 

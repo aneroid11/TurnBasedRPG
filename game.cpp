@@ -16,6 +16,8 @@
 #include "pierwithenglishman.h"
 #include "baywithboatlocat.h"
 
+#include <fstream>
+#include <sstream>
 #include <map>
 
 Game::Game()
@@ -29,17 +31,36 @@ Game::~Game()
     GameScroll::deleteInstance();
 }
 
+std::string readAllText(std::ifstream& in)
+{
+    std::ostringstream sstr;
+    sstr << in.rdbuf();
+    return sstr.str();
+}
+
 void Game::save(Player *pl)
 {
-    scroll->placeText(L"Игра сохранена");
+    std::ofstream out("resources/.svpl.json");
+    out << pl->serializeToJson();
+    out.close();
 
-    std::cout << pl->serializeToJson() << "\n";
+    scroll->placeText(L"Игра сохранена");
+}
+
+void Game::load(Player *pl)
+{
+    std::ifstream in("resources/.svpl.json");
+    std::string str = readAllText(in);
+    json plJson = json::parse(str);
+    pl->deserializeFromJson(plJson);
+
+    scroll->placeText(L"Сохранение загружено");
 }
 
 bool Game::saveFileExists() const
 {
-    // TODO: check if the save file (player.json) exists.
-    return true;
+    std::ifstream in("resources/.svpl.json");
+    return in.is_open();
 }
 
 AbstractLocation* Game::selectNextLocation(Player *pl)
@@ -68,7 +89,13 @@ AbstractLocation* Game::selectNextLocation(Player *pl)
 void Game::run()
 {
     this->scroll->placeText(L"Вы попали на островной город и находитесь в каком-то доме. Вам нужно уплыть с острова. Удачи!");
-    this->scroll->placeOption(L"Начать");
+    this->scroll->placeOption(L"Начать новую игру");
+
+    if (saveFileExists())
+    {
+        this->scroll->placeOption(L"Загрузить сохранение");
+    }
+
     this->scroll->placeOption(L"Не начинать");
 
     std::wstring choice = this->scroll->displayAddedObjectsAndChoice();
@@ -171,6 +198,11 @@ void Game::run()
                                                   });
 
         Player* player = new Player(locations[L"Дом"]);
+
+        if (choice == L"Загрузить сохранение")
+        {
+            load(player);
+        }
 
         while (true)
         {

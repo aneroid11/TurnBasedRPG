@@ -3,3 +3,4 @@ curse.pro.user
 *.o
 Makefile
 *.stash
+*.json

@@ -36,13 +36,22 @@ json Player::serializeToJson() const
     j["health"] = getHealth();
     j["gold"] = getGold();
     j["inventory"] = {};
+    j["equipment"] = {};
 
     for (auto item : inventory)
     {
         j["inventory"].push_back(wstringToString(item));
     }
+    for (auto item : equipment)
+    {
+        j["equipment"].push_back(wstringToString(item));
+    }
 
     return j;
+}
+
+void Player::deserializeFromJson(json j)
+{
 }
 
 void Player::damage(int dmg, std::wstring deathMsg)

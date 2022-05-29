@@ -14,6 +14,7 @@ public:
 
 private:
     void save(Player* pl);
+    void load(Player* pl);
     bool saveFileExists() const;
     AbstractLocation* selectNextLocation(Player* pl);
 
