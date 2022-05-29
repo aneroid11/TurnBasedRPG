@@ -38,16 +38,7 @@ public:
         if (this->health > 100) { this->health = 100; }
     }
 
-    void damage(int dmg, std::wstring deathMsg = L"")
-    {
-        this->health -= dmg;
-
-        if (this->health <= 0)
-        {
-            this->health = 0;
-            this->die(deathMsg);
-        }
-    }
+    void damage(int dmg, std::wstring deathMsg = L"");
 
     void damageNotKill(int dmg)
     {

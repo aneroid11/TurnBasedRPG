@@ -13,6 +13,7 @@ INCLUDEPATH += ./libs/thor/include/
 INCLUDEPATH += ./libs/aurora/include/
 
 SOURCES += \
+        abstractfightlocation.cpp \
         abstractlocation.cpp \
         abstractshoplocat.cpp \
         appearingbutton.cpp \
@@ -31,6 +32,7 @@ SOURCES += \
         zdrasshoplocat.cpp
 
 HEADERS += \
+    abstractfightlocation.h \
     abstractlocation.h \
     abstractshoplocat.h \
     appearingbutton.h \
