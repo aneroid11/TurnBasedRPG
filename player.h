@@ -2,8 +2,11 @@
 #define PLAYER_H
 
 #include "abstractlocation.h"
+#include "nlohmann/json.hpp"
 
 #include <algorithm>
+
+using json = nlohmann::json;
 
 class Player
 {
@@ -13,6 +16,8 @@ public:
         this->currentDestination = initialLocation;
         this->previousLocation = nullptr;
     }
+
+    json serializeToJson() const;
 
     void displayStatus();
 

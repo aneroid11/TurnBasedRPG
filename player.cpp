@@ -1,6 +1,10 @@
 #include "player.h"
 #include "gamescroll.h"
 
+#include <string>
+#include <locale>
+#include <codecvt>
+
 void Player::displayStatus()
 {
     GameScroll* scroll = GameScroll::getInstance();
@@ -8,6 +12,37 @@ void Player::displayStatus()
     scroll->placeText(L"Вы находитесь в [" + getCurrentLocation()->getName() + L"]");
     scroll->placeText(L"Золото: " + std::to_wstring(getGold()));
     scroll->placeText(L"Здоровье: " + std::to_wstring(this->getHealth()));
+}
+
+std::string wstringToString(const std::wstring &ws)
+{
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+    std::string narrow = converter.to_bytes(ws);
+
+    return narrow;
+}
+
+std::wstring stringToWstring(const std::string &s)
+{
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+    std::wstring wide = converter.from_bytes(s);
+
+    return wide;
+}
+
+json Player::serializeToJson() const
+{
+    json j;
+    j["health"] = getHealth();
+    j["gold"] = getGold();
+    j["inventory"] = {};
+
+    for (auto item : inventory)
+    {
+        j["inventory"].push_back(wstringToString(item));
+    }
+
+    return j;
 }
 
 void Player::damage(int dmg, std::wstring deathMsg)

@@ -32,6 +32,8 @@ Game::~Game()
 void Game::save(Player *pl)
 {
     scroll->placeText(L"Игра сохранена");
+
+    std::cout << pl->serializeToJson() << "\n";
 }
 
 bool Game::saveFileExists() const
