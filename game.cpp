@@ -11,7 +11,9 @@
 #include "fieldlocat.h"
 #include "hilllocat.h"
 #include "forestlocat.h"
-#include "fishingpier.h"
+#include "pierwithangryfisherman.h"
+#include "pierwithgoodfisherman.h"
+#include "pierwithenglishman.h"
 
 #include <map>
 
@@ -84,7 +86,9 @@ void Game::run()
         locations[L"Поле"] = new FieldLocat();
         locations[L"Лес"] = new ForestLocat();
         locations[L"Холм"] = new HillLocat();
-        locations[L"Пирс"] = new FishingPier();
+        locations[L"Пирс 1"] = new PierWithAngryFisherman();
+        locations[L"Пирс 2"] = new PierWithGoodFisherman();
+        locations[L"Пирс 3"] = new PierWithEnglishman();
 
         locations[L"Дом"]->setPossibleLocations({
                                                     locations[L"Инвентарь"],
@@ -135,14 +139,24 @@ void Game::run()
         locations[L"Холм"]->setPossibleLocations({
                                                      locations[L"Инвентарь"],
                                                      locations[L"Лес"],
-                                                     locations[L"Пирс"]
+                                                     locations[L"Пирс 1"]
                                                  });
-        locations[L"Пирс"]->setPossibleLocations({
-                                                     locations[L"Инвентарь"],
-                                                     locations[L"Холм"]
-                                                 });
+        locations[L"Пирс 1"]->setPossibleLocations({
+                                                       locations[L"Инвентарь"],
+                                                       locations[L"Холм"],
+                                                       locations[L"Пирс 2"]
+                                                   });
+        locations[L"Пирс 2"]->setPossibleLocations({
+                                                       locations[L"Инвентарь"],
+                                                       locations[L"Пирс 1"],
+                                                       locations[L"Пирс 3"]
+                                                   });
+        locations[L"Пирс 3"]->setPossibleLocations({
+                                                       locations[L"Инвентарь"],
+                                                       locations[L"Пирс 2"]
+                                                   });
 
-        Player* player = new Player(locations[L"Дом"]);
+        Player* player = new Player(locations[L"Лес"]);
         player->addToEquipment(L"палка");
         player->addToInventory(L"палка");
         player->addToInventory(L"шапка");

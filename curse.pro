@@ -32,6 +32,9 @@ SOURCES += \
         homelocat.cpp \
         inventory.cpp \
         main.cpp \
+        pierwithangryfisherman.cpp \
+        pierwithenglishman.cpp \
+        pierwithgoodfisherman.cpp \
         player.cpp \
         toolsshoplocat.cpp \
         zdrasshoplocat.cpp
@@ -57,6 +60,9 @@ HEADERS += \
     inventory.h \
     iobserver.h \
     isubject.h \
+    pierwithangryfisherman.h \
+    pierwithenglishman.h \
+    pierwithgoodfisherman.h \
     player.h \
     screenobject.h \
     toolsshoplocat.h \

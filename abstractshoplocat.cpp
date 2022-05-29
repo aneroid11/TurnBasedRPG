@@ -67,7 +67,7 @@ void AbstractShopLocat::action(Player *player)
 
                 scroll->placeText(L"Вы продали [" + item + L"]");
                 scroll->placeText(L"Теперь у вас " + std::to_wstring(player->getGold()) + L" золотых");
-                return;
+                break;
             }
         }
     } while (choice != L"Выйти из магазина");
