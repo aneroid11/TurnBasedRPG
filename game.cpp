@@ -142,7 +142,7 @@ void Game::run()
                                                      locations[L"Холм"]
                                                  });
 
-        Player* player = new Player(locations[L"Холм"]);
+        Player* player = new Player(locations[L"Дом"]);
         player->addToEquipment(L"палка");
         player->addToInventory(L"палка");
         player->addToInventory(L"шапка");

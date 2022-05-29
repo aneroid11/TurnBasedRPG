@@ -57,7 +57,7 @@ void AbstractShopLocat::action(Player *player)
             }
         }
 
-        for (auto item : player->getEquipmentItems())
+        for (auto item : player->getInventoryItems())
         {
             if (choice == genSellOption(item))
             {
@@ -67,6 +67,7 @@ void AbstractShopLocat::action(Player *player)
 
                 scroll->placeText(L"Вы продали [" + item + L"]");
                 scroll->placeText(L"Теперь у вас " + std::to_wstring(player->getGold()) + L" золотых");
+                return;
             }
         }
     } while (choice != L"Выйти из магазина");
