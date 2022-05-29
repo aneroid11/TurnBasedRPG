@@ -29,6 +29,11 @@ Game::~Game()
     GameScroll::deleteInstance();
 }
 
+void Game::save(Player *pl)
+{
+    scroll->placeText(L"Игра сохранена");
+}
+
 bool Game::saveFileExists() const
 {
     // TODO: check if the save file (player.json) exists.
@@ -169,6 +174,11 @@ void Game::run()
         {
             AbstractLocation* destination = this->selectNextLocation(player);
             player->goToLocation(destination);
+
+            if (destination->getName() == L"Дом")
+            {
+                save(player);
+            }
 
             player->displayStatus();
             player->getCurrentLocation()->action(player);

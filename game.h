@@ -13,6 +13,7 @@ public:
     void run();
 
 private:
+    void save(Player* pl);
     bool saveFileExists() const;
     AbstractLocation* selectNextLocation(Player* pl);
 
