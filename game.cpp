@@ -11,11 +11,13 @@
 #include "fieldlocat.h"
 #include "hilllocat.h"
 #include "forestlocat.h"
+#include "fishingpier.h"
 
 #include <map>
 
 Game::Game()
 {
+    srand(time(nullptr));
     this->scroll = GameScroll::getInstance();
 }
 
@@ -82,6 +84,7 @@ void Game::run()
         locations[L"Поле"] = new FieldLocat();
         locations[L"Лес"] = new ForestLocat();
         locations[L"Холм"] = new HillLocat();
+        locations[L"Пирс"] = new FishingPier();
 
         locations[L"Дом"]->setPossibleLocations({
                                                     locations[L"Инвентарь"],
@@ -131,14 +134,25 @@ void Game::run()
                                                 });
         locations[L"Холм"]->setPossibleLocations({
                                                      locations[L"Инвентарь"],
-                                                     locations[L"Лес"]
+                                                     locations[L"Лес"],
+                                                     locations[L"Пирс"]
+                                                 });
+        locations[L"Пирс"]->setPossibleLocations({
+                                                     locations[L"Инвентарь"],
+                                                     locations[L"Холм"]
                                                  });
 
-        Player* player = new Player(locations[L"Дом"]);
+        Player* player = new Player(locations[L"Холм"]);
         player->addToEquipment(L"палка");
         player->addToInventory(L"палка");
         player->addToInventory(L"шапка");
         player->addToInventory(L"шапка");
+        player->addToInventory(L"удочка");
+
+        for (int i = 0; i < 5; i++)
+        {
+            player->addToInventory(L"червь");
+        }
 
         while (true)
         {

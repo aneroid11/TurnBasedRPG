@@ -102,7 +102,7 @@ void Inventory::action(Player *player)
 
                 player->heal(addHealth);
 
-                scroll->placeText(L"Вы съели " + choice);
+                scroll->placeText(L"Вы съели [" + choice + L"]");
                 scroll->placeText(L"Ваше здоровье увеличилось на " + std::to_wstring(addHealth));
                 scroll->placeText(L"Ваше здоровье: " + std::to_wstring(player->getHealth()));
 
