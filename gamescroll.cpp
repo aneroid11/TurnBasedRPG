@@ -9,7 +9,7 @@ GameScroll* GameScroll::instance = nullptr;
 
 GameScroll::GameScroll()
 {
-    this->window = new sf::RenderWindow(sf::VideoMode(750, 800), "Zdras Town");
+    this->window = new sf::RenderWindow(sf::VideoMode(750, 1000), "Zdras Town");
 
     this->textFont = new sf::Font();
     if (!this->textFont->loadFromFile("resources/fonts/Ubuntu-B.ttf"))
@@ -102,7 +102,8 @@ void GameScroll::drawScrollUntilUserInput()
     while (!this->gotInputFromUser)
     {
         sf::Event event;
-        if (this->window->pollEvent(event))
+
+        do
         {
             if (event.type == sf::Event::Closed)
             {
@@ -117,12 +118,13 @@ void GameScroll::drawScrollUntilUserInput()
                     this->gotInputFromUser = true;
                 }
             }*/
-        }
 
-        for (ScreenObject* obj : objectsToDraw)
-        {
-            obj->update(event, *this->window);
+            for (ScreenObject* obj : objectsToDraw)
+            {
+                obj->update(event, *this->window);
+            }
         }
+        while (this->window->pollEvent(event));
 
         this->window->clear();
         this->window->draw(*this->bgSprite);
@@ -133,6 +135,8 @@ void GameScroll::drawScrollUntilUserInput()
         }
 
         this->window->display();
+
+        sf::sleep(sf::milliseconds(10));
     }
 }
 
