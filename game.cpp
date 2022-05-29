@@ -156,12 +156,14 @@ void Game::run()
                                                        locations[L"Пирс 2"]
                                                    });
 
-        Player* player = new Player(locations[L"Лес"]);
+        Player* player = new Player(locations[L"Холм"]);
         player->addToEquipment(L"палка");
         player->addToInventory(L"палка");
         player->addToInventory(L"шапка");
         player->addToInventory(L"шапка");
         player->addToInventory(L"удочка");
+        player->setGold(51);
+        player->addToInventory(L"англо-русский словарь");
 
         for (int i = 0; i < 5; i++)
         {
