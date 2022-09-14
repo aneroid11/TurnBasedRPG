@@ -1,5 +1,6 @@
 curse
 curse.pro.user
-main.o
+*.o
 Makefile
 *.stash
+*.json
